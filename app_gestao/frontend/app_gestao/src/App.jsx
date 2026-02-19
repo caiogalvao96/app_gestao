@@ -7,6 +7,7 @@ import Navbar from './components/Navbar'
 import Sidebar from './components/Sidebar'
 
 import Home from './pages/home/Home'
+import Projeto from './pages/projeto/Projeto'
 import About from './pages/abaout/About'
 import { Footer } from './components/Footer'
 import Login from './pages/login/Login'
@@ -29,6 +30,8 @@ function App() {
         <Routes>
           <Route path='/' element={<Login/>}/>
           <Route path='/Home' element={<Home/>}/>
+          <Route path='/projeto' element={<Projeto/>}/>
+
         </Routes>
       </BrowserRouter>
     </>

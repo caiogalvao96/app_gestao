@@ -16,7 +16,7 @@ import {
 
 import styles from './Sidebar.module.css'
 
-const Sidebar = ({ isOpen }) => {
+const Sidebar = ({ isOpen, setShowDetail}) => {
   if (!isOpen) return null;
 
   return(
@@ -24,11 +24,11 @@ const Sidebar = ({ isOpen }) => {
         <aside className={styles.sidebar}>
             <span className={styles.sectionTitle}>Principal</span>
             <ul>
-                <li>
+                <li onClick={() => setShowDetail('projetos')}>
                   <RiBuilding2Line className={styles.icon}/>
                   Projetos
                 </li>
-                <li>
+                <li onClick={() => setShowDetail('dashboard')}>
                   <RiLayoutMasonryLine className={styles.icon}/>
                   Dashboard
                 </li>

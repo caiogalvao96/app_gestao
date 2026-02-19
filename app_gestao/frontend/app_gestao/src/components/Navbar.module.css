@@ -4,7 +4,9 @@
     width: 100%;
     height: 10vh;
     display: flex;
+    flex-direction: row-reverse;
     align-items: center;
+
 }
 
 
@@ -12,9 +14,6 @@
   background: none;
   border: none;
   cursor: pointer;
-  padding: 8px;
-  display: flex;
-  align-items: center;
   transition: transform 0.3s;
 }
 
@@ -30,4 +29,65 @@
 .btnMenu:hover svg {
   fill: yellow; /* Muda a cor ao passar o mouse */
   transform: scale(1.2);
+}
+
+span{
+  color: white;
+  margin-right: 2vw;
+}
+
+.menu{
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.detalhe{
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cDetalhe{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.nIcon{
+  margin-right: 1vw;
+  color: white;
+}
+
+.detalhe button {
+
+    border: none;
+    background-color: yellow;
+    width: 15%;
+    height: 4vh;
+    font-family: sans-serif;
+    font-weight: bold;
+    transition: 0.6s;
+    color: black;
+}
+
+.dethalhe button svg {
+  color: green;
+  margin-right: 5px;
+  size: 4vw;
+}
+
+.detalhe button:hover{
+    border: 2px solid yellow;
+    background-color: transparent;
+    width: 15%;
+    height: 4vh;
+    font-family: sans-serif;
+    font-weight: bold;
+    color: yellow;
+
 }

@@ -3,3 +3,74 @@
     height: 100vh;
     background-color: lightgray;
 }
+
+.container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto; /* Permite rolar se houver muitos cards */
+    background-color: #121212; /* Fundo escuro para contrastar */
+}
+
+.gridObras {
+    display: grid;
+    /* Isso cria colunas automáticas que se ajustam ao tamanho da tela */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.cardObra {
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.cardObra:hover {
+    transform: translateY(-5px);
+    border-color: #ffee00; /* Destaque amarelo ao passar o mouse */
+}
+
+.cardHeader {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #ffee00;
+}
+
+.cardHeader h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: white;
+}
+
+.cardBody p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+.btnAcessar {
+    background-color: transparent;
+    border: 1px solid #ffee00;
+    color: #ffee00;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    font-weight: bold;
+}
+
+.btnAcessar:hover {
+    background-color: #ffee00;
+    color: black;
+}

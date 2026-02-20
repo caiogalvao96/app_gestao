@@ -1,0 +1,151 @@
+
+.container{
+    padding: 2px;
+    background-color: transparent;
+    height: 100%;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.resumo {
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 2px;
+    box-sizing: border-box;
+     background-color: #EFEFEF;
+}
+
+.tAtividade{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 2vh;
+}
+
+.atividade{
+    display: flex;
+    align-items: center;
+}
+
+.subDetalhe{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.detalhes{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 3vh;
+}
+
+.listaAtividade{
+    width: 99,7%;
+    height: 77%;
+    overflow-y: auto;
+    margin-top: 1vh;
+    border-radius: 5px;
+    border: 1px solid grey;
+    box-sizing: border-box;
+
+}
+
+.listaAtividade::-webkit-scrollbar-track {
+    background: transparent; 
+
+}
+
+
+.aLabel{
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+.h3Atividade{
+    font-family: sans-serif;
+    color: #1f1f1f;
+}
+
+.aIcon{
+    width: 4vw;
+    height: 4vh;
+}
+
+.aButton{
+    width: 10vw;
+    height: 4vh;
+    background-color: yellow;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.aButton:hover{
+    border: 1px solid grey;
+}
+
+.cardAtv{
+    border: 1px solid grey;
+    margin: 1vh;
+    padding: 1vh;
+    background-color: #EFEFEF;
+    border-radius: 5px;
+
+    display: flex;
+
+}
+
+.cardBody{
+    background-color: #EFEFEF;
+}
+
+.cardBody p{
+    font-family: sans-serif;
+    color: #1f1f1f;
+}
+
+.cardHeader h4{
+    font-family: sans-serif;
+    color: #1f1f1f;
+    
+}
+
+.opcoes{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 50%;
+}
+
+.cardInfo{
+    width: 50%;
+    padding-left: 10%;
+}
+
+.btnOpcao{
+    width: 10vw;
+    height: 4vh;
+    background-color: yellow;
+    border: 1px solid yellow;
+    color: #1f1f1f;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+.btnExcluir{
+    width: 10vw;
+    height: 4vh;
+    background-color: transparent;
+    border: 1px solid red;
+    color: red;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+.btnExcluir svg {
+    color: red;
+}

@@ -28,9 +28,11 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 3vh;
+ 
   width: 100%;
   padding: 5px;
+
+  margin-bottom: 2vh;
 }
 .group input{
     width: 90%;
@@ -73,7 +75,7 @@
     border: 1px solid yellow;
 }
 
-.container button {
+.aButton {
     
     margin-top: 3vh;
     border: none;
@@ -83,18 +85,11 @@
     font-family: sans-serif;
     font-weight: bold;
     transition: 0.6s;
+    cursor: pointer;
 }
 
-.container button:hover{
-    margin-top: 3vh;
-    border: 1px solid yellow;
-    background-color: transparent;
-    width: 45%;
-    height: 5vh;
-    font-family: sans-serif;
-    font-weight: bold;
-    transition: 0.6s;
-    color: yellow;
+.aButton:hover{
+    border: 1px solid #1e1e1e;
 }
 
 .mInput{

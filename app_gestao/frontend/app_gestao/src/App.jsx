@@ -11,6 +11,7 @@ import Projeto from './pages/projeto/Projeto'
 import About from './pages/abaout/About'
 import { Footer } from './components/Footer'
 import Login from './pages/login/Login'
+import ModalAtividade from './components/ModalAtividade'
 
 
 
@@ -31,7 +32,7 @@ function App() {
           <Route path='/' element={<Login/>}/>
           <Route path='/Home' element={<Home/>}/>
           <Route path='/projeto' element={<Projeto/>}/>
-
+          <Route path='/atividade' element={<ModalAtividade />}/>
         </Routes>
       </BrowserRouter>
     </>

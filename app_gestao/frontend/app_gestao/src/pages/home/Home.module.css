@@ -14,7 +14,7 @@
     flex: 1;
     padding: 20px;
     overflow-y: auto; /* Permite rolar se houver muitos cards */
-    background-color: #121212; /* Fundo escuro para contrastar */
+    background-color: transparent; /* Fundo escuro para contrastar */
 }
 
 .gridObras {

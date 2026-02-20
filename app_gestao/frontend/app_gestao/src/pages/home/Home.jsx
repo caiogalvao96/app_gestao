@@ -6,6 +6,7 @@ import Sidebar from '../../components/Sidebar'
 import styles from './Home.module.css'
 import Modal from '../../components/Modal'
 
+import { Link } from 'react-router-dom';
 
 const Home = () => {
 
@@ -50,7 +51,7 @@ const Home = () => {
                 </div>
 
                 <div className={styles.cardFooter}>
-                  <button className={styles.btnAcessar}>Acessar Detalhes</button>
+                  <Link to="/projeto" className={styles.btnAcessar}>Acessar Detalhes</Link>
                 </div>
               </div>
             ))}

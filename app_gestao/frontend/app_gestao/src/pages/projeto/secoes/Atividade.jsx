@@ -1,32 +1,47 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { RiTaskLine, RiEdit2Fill, RiDeleteBin6Line} from "react-icons/ri";
 import { TiPlus } from "react-icons/ti";
 
 import styles from './Atividade.module.css'
+import ModalAtividade from '../../../components/ModalAtividade';
 
 
 
-const Atividade = ({showModal}) => {
+const Atividade = () => {
 
 
 const atividade = [
-    {id: 1, descricao: 'Montagem de infra', dataInicio: '19/02/2026', dataFim: '22/02/2026', atvStatus: 'Agendada', obs: 'Executar numa PP'},
-    {id: 2, descricao: 'Passagem de cabos', dataInicio: '19/02/2026', dataFim: '22/02/2026', atvStatus: 'Agendada', obs: 'Executar numa PP'},
-    {id: 3, descricao: 'Ligação', dataInicio: '19/02/2026', dataFim: '22/02/2026', atvStatus: 'Agendada', obs: 'Executar numa PP'},
-    {id: 4, descricao: 'Teste e comissionamento', dataInicio: '19/02/2026', dataFim: '22/02/2026', atvStatus: 'Agendada', obs: 'Executar numa PP'},
-    {id: 5, descricao: 'Teste e comissionamento', dataInicio: '19/02/2026', dataFim: '22/02/2026', atvStatus: 'Agendada', obs: 'Executar numa PP'},
+    {id: 1, descricao: 'Montagem de infra', dataInicio: '2026-02-19', dataFim: '2026-02-22', atvStatus: 'Agendada', obs: 'Executar numa PP'},
+    {id: 2, descricao: 'Passagem de cabos', dataInicio: '2026-02-19', dataFim: '2026-02-22', atvStatus: 'Agendada', obs: 'Executar numa PP'},
+    {id: 3, descricao: 'Ligação', dataInicio: '2026-02-19', dataFim: '2026-02-22', atvStatus: 'Agendada', obs: 'Executar numa PP'},
+    {id: 4, descricao: 'Teste e comissionamento', dataInicio: '2026-02-19', dataFim: '2026-02-22', atvStatus: 'Agendada', obs: 'Executar numa PP'},
+    {id: 5, descricao: 'Teste e comissionamento', dataInicio: '2026-02-19', dataFim: '2026-02-22', atvStatus: 'Agendada', obs: 'Executar numa PP'},
 ];
 
-  return (
+const [atividadeEdicao, setAtvidadeEdicao] = useState(null);
+
+ 
+if(atividadeEdicao) return (
+    <ModalAtividade dadosAtividade={atividadeEdicao} onClose={() => setAtvidadeEdicao(null)}/>
+)
+
+return (
+        
+
+       
+        
         <div className={styles.container}>
+
+             
+
             <div className={styles.resumo}>
                 <div className={styles.tAtividade}>
                     <div className={styles.atividade}>
                         <RiTaskLine className={styles.aIcon}/>
                         <h3 className={styles.h3Atividade}>Resumo das atividades</h3>
                     </div>
-                    <button onClick={showModal} className={styles.aButton}> <TiPlus/> Criar atividade</button>
+                    <button  className={styles.aButton}> <TiPlus/> Criar atividade</button>
                 </div>
                 <div className={styles.detalhes}>
                     <div className={styles.subDetalhe}>
@@ -58,13 +73,14 @@ const atividade = [
                             </div>
                         </div>
                         <div className={styles.opcoes}>
-                            <button onClick={showModal} className={styles.btnOpcao}> <RiEdit2Fill /> Editar</button>
+                            <button onClick={() => setAtvidadeEdicao(atv)} className={styles.btnOpcao}> <RiEdit2Fill /> Editar</button>
                             <button className={styles.btnExcluir}> <RiDeleteBin6Line /> Excluir</button>
                         </div>
                     </div>
                 ))}
             </div>
         </div>
+       
   )
 }
 

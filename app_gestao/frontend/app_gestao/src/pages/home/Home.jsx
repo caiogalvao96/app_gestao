@@ -7,6 +7,7 @@ import styles from './Home.module.css'
 import Modal from '../../components/Modal'
 
 import { Link } from 'react-router-dom';
+import Projeto from '../projeto/Projeto'
 
 const Home = () => {
 
@@ -15,6 +16,8 @@ const Home = () => {
   const[showDetail, setShowDetail] = useState('home')
 
   const[showModal, setShowModal] = useState(false)
+
+  const[showProjeto, setShowProjeto] = useState(false)
   
   // Função para inverter o estado
   const toggleSidebar = () => setSidebar(!sidebar);
@@ -28,6 +31,11 @@ const Home = () => {
   { id: 3, nome: "Galpão Industrial", cliente: "Logística Z", status: "Concluído" }
 ];
 
+     const toggleProjeto = () => {
+
+    setShowProjeto(!showProjeto); 
+  }
+
 
   return (
     <div className={styles.main}>
@@ -37,7 +45,8 @@ const Home = () => {
 
 
           {/* --- ÁREA DOS CARDS --- */}
-        <div className={styles.content}>
+        {showProjeto && <Projeto projeto={toggleProjeto}/>}
+        {!showProjeto && <div className={styles.content}>
           <div className={styles.gridObras}>
             {obras.map((obra) => (
               <div key={obra.id} className={styles.cardObra}>
@@ -51,13 +60,14 @@ const Home = () => {
                 </div>
 
                 <div className={styles.cardFooter}>
-                  <Link to="/projeto" className={styles.btnAcessar}>Acessar Detalhes</Link>
+                  <button onClick={toggleProjeto} className={styles.btnAcessar}>Acessar detalhes</button>
                 </div>
               </div>
             ))}
           </div>
-        </div>
+        </div>}
         {/* ----------------------- */}
+          
       
 
           <Modal aberto={showModal} clicou={toggleModal}/>

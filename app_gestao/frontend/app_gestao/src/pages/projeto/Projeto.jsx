@@ -2,14 +2,15 @@ import React, { useState } from 'react'
 
 import { Link } from 'react-router-dom';
 
-import { RiHome2Line, RiHammerLine, RiStackLine, RiListCheck2, RiDashboardLine } from "react-icons/ri";
+import { RiHammerLine, RiStackLine, RiListCheck2, RiDashboardLine, RiCloseFill } from "react-icons/ri";
 
 import styles from './Projeto.module.css'
 import VisaoGeral from './secoes/VisaoGeral'
 import Atividade from './secoes/Atividade';
 import ModalAtividade from '../../components/ModalAtividade';
 
-const Projeto = () => {
+
+const Projeto = ({projeto}) => {
 
   const[opcao, setOpcao] = useState(1)
 
@@ -38,7 +39,7 @@ const Projeto = () => {
 
     <div className={styles.main}>
 
-      {modalAtividade && <ModalAtividade showModal={toggleModal}/>}
+    
 
       <div className={styles.container}>
         <div className={styles.nav}>
@@ -56,7 +57,7 @@ const Projeto = () => {
               <button onClick={() => setOpcao(4)} className={styles.btnProjeto}> <RiHammerLine/>Insumos</button>
             </li>
             <li>
-              <Link to="/home" className={styles.btnLink}> <RiHome2Line/> Home</Link>
+              <button onClick={projeto} className={styles.btnProjeto}> <RiCloseFill /> Sair</button>
             </li>
           </ul>
         </div>

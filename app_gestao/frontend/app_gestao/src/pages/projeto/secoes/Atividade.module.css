@@ -12,7 +12,7 @@
     border-radius: 5px;
     padding: 2px;
     box-sizing: border-box;
-     background-color: #EFEFEF;
+    background-color: #1e1e1e;
 }
 
 .tAtividade{
@@ -41,7 +41,7 @@
 
 .listaAtividade{
     width: 99,7%;
-    height: 77%;
+    height: 75%;
     overflow-y: auto;
     margin-top: 1vh;
     border-radius: 5px;
@@ -59,16 +59,18 @@
 .aLabel{
     font-family: sans-serif;
     font-weight: bold;
+     color: #fefefe;
 }
 
 .h3Atividade{
     font-family: sans-serif;
-    color: #1f1f1f;
+    color: #fefefe;
 }
 
 .aIcon{
     width: 4vw;
     height: 4vh;
+    color: #fefefe;
 }
 
 .aButton{
@@ -91,7 +93,7 @@
     border: 1px solid grey;
     margin: 1vh;
     padding: 1vh;
-    background-color: #EFEFEF;
+    background-color: #1e1e1e;
     border-radius: 5px;
 
     display: flex;
@@ -99,17 +101,17 @@
 }
 
 .cardBody{
-    background-color: #EFEFEF;
+    background-color: #1e1e1e;
 }
 
 .cardBody p{
     font-family: sans-serif;
-    color: #1f1f1f;
+    color: #fefefe;
 }
 
 .cardHeader h4{
     font-family: sans-serif;
-    color: #1f1f1f;
+    color: #fefefe;
     
 }
 
@@ -148,4 +150,9 @@
 
 .btnExcluir svg {
     color: red;
+}
+
+.cardAtv p span {
+    
+    color: #B0B0B0;
 }

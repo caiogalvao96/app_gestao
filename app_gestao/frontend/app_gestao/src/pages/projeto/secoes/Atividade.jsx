@@ -66,10 +66,10 @@ return (
                                 <h4>{atv.descricao}</h4>
                             </div>           
                             <div className={styles.cardBody}>
-                                <p><strong>Data inicio:</strong> {atv.dataInicio}</p>
-                                <p><strong>Data fim:</strong> {atv.dataFim}</p>
-                                <p><strong>Status:</strong> {atv.atvStatus}</p>
-                                <p><strong>Observação</strong> {atv.obs}</p>
+                                <p><strong>Data inicio:</strong> <span>{atv.dataInicio}</span></p>
+                                <p><strong>Data fim:</strong> <span>{atv.dataFim}</span></p>
+                                <p><strong>Status:</strong> <span>{atv.atvStatus}</span></p>
+                                <p><strong>Observação</strong> <span>{atv.obs}</span></p>
                             </div>
                         </div>
                         <div className={styles.opcoes}>

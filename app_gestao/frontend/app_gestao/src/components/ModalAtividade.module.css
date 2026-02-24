@@ -1,22 +1,25 @@
 .modal {
-    position: relative;
+
     background-color: rgba(0, 0, 0, 0.8);
     width: 100%;
     height: 100%;
-    z-index: 1000;
+    margin-top: 0,8em;
+   
 
     display: flex;
     justify-content: center;
     align-items: center;
+    box-sizing: border-box;
+    border-radius: 10px;
 }
 
 .container{
-    width: 35%;
-    height: 85%;
+    width: 100%;
+    height: 95%;
     background-color:  #F8F9FA;
     border-radius: 10px;
     border: 1px solid #1e1e1e;
-    z-index: 1001;
+  
 
     display: flex;
     flex-direction: column;
@@ -27,11 +30,10 @@
 .group{
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
  
   width: 100%;
   padding: 5px;
-
   margin-bottom: 2vh;
 }
 .group input{
@@ -50,8 +52,17 @@
     border: 1px solid darkgray;
     font-size: medium;
     padding: 1px;
+    margin-left: 1em;
 
 }
+
+.groupInputs label{
+
+    margin-left: 1em;
+
+}
+
+
 
 .groupInputs input:focus{
     background-color: transparent;
@@ -66,6 +77,12 @@
     border: 1px solid darkgray;
     outline: none;
     padding: 1px;
+    margin-left: 1em;
+}
+
+.mInput label{
+  
+    margin-left: 1em;
 }
 
 .mInput input:focus{
@@ -77,10 +94,11 @@
 
 .aButton {
     
-    margin-top: 3vh;
+    margin-top: 2vh;
+    margin-bottom: 1vh;
     border: none;
     background-color: yellow;
-    width: 45%;
+    width: 25%;
     height: 5vh;
     font-family: sans-serif;
     font-weight: bold;
@@ -120,4 +138,12 @@ input {
 .groupInputs input[type="date"]{
     color: black!important;
     font-size: medium;
+}
+
+.groupButtons{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    width: 100%;
 }

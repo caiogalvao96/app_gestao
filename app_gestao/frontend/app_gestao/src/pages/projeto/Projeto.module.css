@@ -54,7 +54,7 @@ li{
 .btnProjeto {
     
     height: 100%;
-    width: 13em;
+    width: 12em;
     border-radius: 5px;
     border: 1px solid lightgrey;
     font-family: sans-serif;
@@ -85,7 +85,7 @@ li{
     transition: all 0.1s; /* Deixa o movimento suave */
 
     height: 96%;
-    width: 13em;
+    width: 20%;
     border-radius: 5px;
     border: 1px solid lightgray;
     background-color: #EFEFEF;

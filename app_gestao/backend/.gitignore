@@ -1,0 +1,14 @@
+# Pastas de dependências (MUITO pesadas, não devem ir ao Git)
+node_modules/
+
+# Arquivos de variáveis de ambiente (onde ficam senhas e chaves)
+.env
+
+# Logs do sistema
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Arquivos de sistema e editores
+.DS_Store
+.vscode/

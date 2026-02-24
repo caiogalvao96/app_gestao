@@ -9,15 +9,17 @@ const ModalAtividade = ({dadosAtividade, onClose}) => {
     <div className={styles.modal}>
             <div className={styles.container}>
                 <div className={styles.titulo}>
-                    <h2>Nova atividade</h2>
+                    <h2>Atividade</h2>
                 </div>
-                <div className={styles.mInput}>
-                    <label>Descrição da atividade</label>
-                    <input type="text" placeholder='Ex: Lançamento de cabos...' defaultValue={dadosAtividade.descricao}/> 
-                </div>
-                <div className={styles.mInput}>
-                    <label>Observação</label>
-                    <input type="text" placeholder='Ex: Atividade será executada na PG' defaultValue={dadosAtividade.obs}/> 
+                <div className={styles.group}>
+                    <div className={styles.mInput}>
+                        <label>Descrição da atividade</label>
+                        <input type="text" placeholder='Ex: Lançamento de cabos...' defaultValue={dadosAtividade.descricao}/> 
+                    </div>
+                    <div className={styles.mInput}>
+                        <label>Observação</label>
+                        <input type="text" placeholder='Ex: Atividade será executada na PG' defaultValue={dadosAtividade.obs}/> 
+                    </div>
                 </div>
                 <div className={styles.group}>
                     <div className={styles.groupInputs}>
@@ -34,9 +36,10 @@ const ModalAtividade = ({dadosAtividade, onClose}) => {
                         <label>Status da atvidade</label>
                         <input type="text" placeholder='Ex: Agendada, em andamento...' defaultValue={dadosAtividade.atvStatus}/>
                 </div>
-                <button className={styles.aButton}>Salvar</button>
-                <button onClick={onClose} className={styles.aButton}>Fechar</button>
-                
+                <div className={styles.groupButtons} >
+                    <button className={styles.aButton}>Salvar</button>
+                    <button onClick={onClose} className={styles.aButton}>Fechar</button>
+                </div>
             </div>
         </div>
   )

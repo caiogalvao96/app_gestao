@@ -7,7 +7,10 @@
     align-items: baseline;
     padding-top: 3vh;
     padding-left: 1vw;
-
+    z-index: 1005;
+    position: fixed;
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.5);
+   
 }
 
 .sidebar ul li {

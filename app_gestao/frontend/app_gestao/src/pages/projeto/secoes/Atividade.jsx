@@ -27,14 +27,7 @@ if(atividadeEdicao) return (
 )
 
 return (
-        
-
-       
-        
-        <div className={styles.container}>
-
-             
-
+        <div className={styles.acontainer}>
             <div className={styles.resumo}>
                 <div className={styles.tAtividade}>
                     <div className={styles.atividade}>

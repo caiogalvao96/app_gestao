@@ -1,7 +1,8 @@
 .main {
     width: 100vw;
     background-color:  rgba(0, 0, 0, 0.75);
-  
+    box-sizing: border-box;
+    overflow-y: auto;
     
 }
 
@@ -13,17 +14,18 @@
 }
 
 .content {
-    flex: 1;
-    padding: 20px;
-    overflow-y: auto; /* Permite rolar se houver muitos cards */
-    background-color: transparent; /* Fundo escuro para contrastar */
+
+ width: 100%;
 }
 
 .gridObras {
-    display: grid;
-    /* Isso cria colunas automáticas que se ajustam ao tamanho da tela */
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 20px;
+   display: grid;
+   grid-template-columns: repeat(auto-fill, 31%);
+   justify-content: center; /* Garante que o grid comece na esquerda */ 
+   padding-top: 10vh;
+   width: 100%;
+   gap: 15px;
+ 
 }
 
 .cardObra {
@@ -35,6 +37,7 @@
     flex-direction: column;
     gap: 12px;
     transition: transform 0.2s, border-color 0.2s;
+    
 }
 
 .cardObra:hover {
@@ -75,4 +78,21 @@
 .btnAcessar:hover {
     background-color: #ffee00;
     color: black;
+}
+
+.listaProjetos{
+  
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    
+}
+
+@media screen and (max-width: 768px) {
+  .gridObras {
+    display: flex;
+    flex-direction: column;
+  }
 }

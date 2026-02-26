@@ -33,6 +33,7 @@ function App() {
           <Route path='/Home' element={<Home/>}/>
           <Route path='/projeto' element={<Projeto/>}/>
           <Route path='/atividade' element={<ModalAtividade />}/>
+          <Route path='/login' element={<Login />} />
         </Routes>
       </BrowserRouter>
     </>

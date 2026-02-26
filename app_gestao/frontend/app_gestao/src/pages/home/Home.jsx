@@ -28,7 +28,9 @@ const Home = () => {
   const obras = [
   { id: 1, nome: "Edifício Alpha", cliente: "Construtora X", status: "Em andamento" },
   { id: 2, nome: "Residencial Solar", cliente: "Cliente Y", status: "Planejamento" },
-  { id: 3, nome: "Galpão Industrial", cliente: "Logística Z", status: "Concluído" }
+  { id: 3, nome: "Galpão Industrial", cliente: "Logística Z", status: "Concluído" },
+  { id: 4, nome: "Galpão Industrial", cliente: "Logística Z", status: "Concluído" },
+  { id: 5, nome: "Galpão Industrial", cliente: "Logística Z", status: "Concluído" }
 ];
 
      const toggleProjeto = () => {
@@ -41,9 +43,9 @@ const Home = () => {
     <div className={styles.main}>
         { !showModal && <Navbar onMenuClick={toggleSidebar} isSidebarOpen={sidebar} showDetail={showDetail} clicou={toggleModal}/>}
         <div className={styles.container}>
-          { !showModal && <Sidebar isOpen={sidebar} setShowDetail={setShowDetail}/>}
+          { !showModal && <Sidebar isOpen={sidebar} setShowDetail={setShowDetail} onMenuClick={toggleSidebar}/>}
 
-
+      <div className={styles.listaProjetos}>
           {/* --- ÁREA DOS CARDS --- */}
         {showProjeto && <Projeto projeto={toggleProjeto}/>}
         {!showProjeto && <div className={styles.content}>
@@ -67,13 +69,9 @@ const Home = () => {
           </div>
         </div>}
         {/* ----------------------- */}
-          
-      
-
+      </div>
           <Modal aberto={showModal} clicou={toggleModal}/>
         </div>
-
-        
     </div>
   )
 

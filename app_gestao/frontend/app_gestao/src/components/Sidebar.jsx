@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { useNavigate } from 'react-router-dom';
+
 import { 
   RiBuilding2Line, 
   RiCalendarCheckLine, 
@@ -11,18 +13,35 @@ import {
   RiMoneyDollarCircleLine, 
   RiBarChartGroupedLine, 
   RiFileTextLine, 
-  RiNotificationBadgeLine
+  RiNotificationBadgeLine,
+  RiLogoutBoxLine,
+  RiArrowLeftSLine
 } from "react-icons/ri";
 
 import styles from './Sidebar.module.css'
 
-const Sidebar = ({ isOpen, setShowDetail}) => {
-  if (!isOpen) return null;
+const Sidebar = ({ isOpen, setShowDetail, onMenuClick}) => {
+
+
+  const navigate = useNavigate(); // 2. Inicialize o navigate
+
+    const handleLogin = (e) => {
+        e.preventDefault(); // Evita o recarregamento da página
+        
+        // Aqui você faria sua lógica de autenticação
+        console.log("Logando...");
+
+        // 3. Redireciona para a rota definida no seu App.jsx
+        navigate('/login');
+    }
 
   return(
     <div>
-        <aside className={styles.sidebar}>
-            <span className={styles.sectionTitle}>Principal</span>
+        <aside className={`${styles.sidebar} ${isOpen ? styles.open : ''}`}>
+            <div className={styles.closeSidebar}>
+                <span className={styles.sectionTitle}>Principal</span>
+                <button onClick={onMenuClick} className={styles.close}><RiArrowLeftSLine className={styles.iClose}/></button>
+            </div>
             <ul>
                 <li onClick={() => setShowDetail('projetos')}>
                   <RiBuilding2Line className={styles.icon}/>
@@ -37,7 +56,7 @@ const Sidebar = ({ isOpen, setShowDetail}) => {
                   Planejamento
                 </li>
             </ul>
-            <span className={styles.sectionTitle}>Gestão  </span>
+            <span className={styles.sectionTitle}>Gestão</span>
             <ul>
                 <li>
                   <RiInboxArchiveLine className={styles.icon}/>
@@ -75,6 +94,7 @@ const Sidebar = ({ isOpen, setShowDetail}) => {
                   Alertas
                 </li>
             </ul>
+            <button onClick={handleLogin} className={styles.logout}><RiLogoutBoxLine className={styles.icon}/>Logout</button>
         </aside>
     </div>
   )

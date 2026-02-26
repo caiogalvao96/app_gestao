@@ -43,7 +43,7 @@ const Projeto = ({projeto}) => {
 
       <div className={styles.container}>
         <div className={styles.nav}>
-          <ul className={styles.lista}>
+          <ul className={styles.lista}>  
             <li>
               <button onClick={() => setOpcao(1)} className={styles.btnProjeto}> <RiDashboardLine/> Visão geral</button>
             </li>

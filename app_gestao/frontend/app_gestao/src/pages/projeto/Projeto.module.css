@@ -103,6 +103,12 @@ li{
 
 .btnProjeto:hover{
     border: 1px solid yellow;
+    color: yellow;
+}
+
+.btnProjeto:hover svg{
+    fill: yellow;
+    color: yellow;
 }
 
 .btnLink:hover{

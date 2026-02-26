@@ -1,31 +1,47 @@
 .sidebar {
-    width: 12vw;
+    /* Mantendo seu design original */
+    width: 250px; /* Sugestão: troque 12vw por px para não sumir no mobile */
     height: 100vh;
     background-color: black;
     display: flex;
     flex-direction: column;
     align-items: baseline;
     padding-top: 3vh;
-    padding-left: 1vw;
+    padding-left: 20px; /* Use px para garantir o respiro do ícone */
     z-index: 1005;
     position: fixed;
+    top: 0;
+    left: 0;
     box-shadow: 5px 0 15px rgba(0, 0, 0, 0.5);
-   
+
+    /* --- ADIÇÕES PARA A TRANSIÇÃO --- */
+    transform: translateX(-100%); /* Começa totalmente escondida à esquerda */
+    transition: transform 0.4s ease-in-out; /* Velocidade da animação */
+    
+}
+
+/* Classe que o React vai aplicar quando isOpen for true */
+.open {
+    transform: translateX(0); /* Desliza para a posição visível */
+}
+
+.sidebar ul {
+    padding: 0;
+    margin: 0;
 }
 
 .sidebar ul li {
     color: #F8F9FA;
     list-style: none;
     font-family: sans-serif;
-    margin-bottom: 1vh;
-
+    margin-bottom: 2vh; /* Aumentei um pouco para facilitar o toque no celular */
+    display: flex;
+    align-items: center;
+    transition: color 0.2s;
 }
 
 .sidebar ul li:hover {
     color: yellow;
-    list-style: none;
-    font-family: sans-serif;
-    margin-bottom: 1vh;
     cursor: pointer;
 }
 
@@ -36,12 +52,53 @@
     margin-top: 3vh;
     font-weight: bold;
     font-style: oblique;
-    
-  
-
 }
 
 .icon {
-
-    margin-right: 1vw;
+    margin-right: 15px; /* Ajustado para consistência */
+    font-size: 1.2rem;
 }
+
+.logout {
+    margin-top: auto; /* Joga o botão de logout para o final da sidebar */
+    margin-bottom: 7vh;
+    background-color: transparent;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border: none;
+}
+
+.logout:hover {
+    color: yellow;
+}
+
+.closeSidebar{
+    display: flex;
+    align-items: center;
+    width: 90%;
+    
+}
+
+.close{
+    background-color: transparent;
+    border: none;
+}
+
+.closeSidebar span {
+    margin-right: 9vw;
+}
+
+.iClose{
+    color: white;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+.iClose:hover{
+    color: yellow;
+}
+
+

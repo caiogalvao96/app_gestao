@@ -41,7 +41,7 @@ const Navbar = ({ onMenuClick, isSidebarOpen, showDetail, clicou}) => {
         </div>
         <div className={styles.menu}>
           <button className={styles.btnMenu} onClick={onMenuClick}>
-              {isSidebarOpen ? <IoClose/> : <TiThMenu />}
+              <TiThMenu />
           </button>  
         </div>
     </div>

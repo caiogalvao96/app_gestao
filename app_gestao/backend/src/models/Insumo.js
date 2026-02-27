@@ -4,7 +4,7 @@ import sequelize from "../database/conn.js";
 import GrupoCusto from "./GrupoCusto.js";
 import Unidade from "./Unidade.js";
 
-const Insumo = sequelize.define('Insumo', {
+const Insumo = sequelize.define('insumo', {
     ism_id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -18,6 +18,8 @@ const Insumo = sequelize.define('Insumo', {
         type: DataTypes.DECIMAL,
         allowNull: true
     }
+},{
+    tableName: 'insumo'
 })
 
 Insumo.belongsTo(GrupoCusto, {

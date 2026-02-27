@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../database/conn.js";
 
-const ClassificacaoArea = sequelize.define('ClassificacaoArea', {
+const ClassificacaoArea = sequelize.define('classificacao_area', {
     clas_id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -15,7 +15,8 @@ const ClassificacaoArea = sequelize.define('ClassificacaoArea', {
         type: DataTypes.STRING,
         allowNull: true
     }
-
+},{
+    tableName: 'classificacao_area'
 })
 
 export default ClassificacaoArea;

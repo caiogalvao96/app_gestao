@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../database/conn.js";
 
-const GrupoCusto = sequelize.define('GrupoCusto',{
+const GrupoCusto = sequelize.define('grupo_custo',{
     gpc_id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -15,6 +15,8 @@ const GrupoCusto = sequelize.define('GrupoCusto',{
         type: DataTypes.STRING,
         allowNull:true
     }
+},{
+    tableName: 'grupo_custo'
 })
 
 export default GrupoCusto;

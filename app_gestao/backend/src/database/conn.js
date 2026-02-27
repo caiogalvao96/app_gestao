@@ -1,16 +1,19 @@
-
 import { Sequelize } from 'sequelize';
 
-// Substitua pelos seus dados do PostgreSQL
 const sequelize = new Sequelize('app_projetos', 'postgres', 'admin', {
   host: 'localhost',
   dialect: 'postgres',
-  logging: false, // Define como true se quiser ver as queries SQL no console
+  logging: false,
   pool: {
-    max: 5,         // Máximo de conexões abertas
-    min: 0,         // Mínimo de conexões
-    acquire: 30000, // Tempo máximo tentando conectar antes de dar erro
-    idle: 10000     // Tempo que uma conexão pode ficar parada antes de fechar
+    max: 5,
+    min: 0,
+    acquire: 30000,
+    idle: 10000
+  },
+  define: {
+    underscored: false,     // Não transforma camelCase em snake_case
+    freezeTableName: true,  // Não deixa o Sequelize pluralizar (trava o nome que você der)
+    timestamps: true        // Mantém createdAt e updatedAt em camelCase
   }
 });
 

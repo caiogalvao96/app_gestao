@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../database/conn.js";
 
-const Unidade = sequelize.define('Unidade', {
+const Unidade = sequelize.define('unidade', {
     und_id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -15,6 +15,8 @@ const Unidade = sequelize.define('Unidade', {
         type: DataTypes.STRING,
         allowNull: true
     }
+},{
+    tableName: 'unidade'
 })
 
 export default Unidade;

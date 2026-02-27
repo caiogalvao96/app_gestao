@@ -12,6 +12,9 @@ import About from './pages/abaout/About'
 import { Footer } from './components/Footer'
 import Login from './pages/login/Login'
 import ModalAtividade from './components/ModalAtividade'
+import TesteInsumos from './components/TesteInsumos'
+import Listaprodutos from './components/Listaprodutos'
+import CatalogoInsumos from './components/CatalogoInsumos'
 
 
 
@@ -27,6 +30,7 @@ function App() {
 
   return (
     <>
+      <CatalogoInsumos />
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Login/>}/>

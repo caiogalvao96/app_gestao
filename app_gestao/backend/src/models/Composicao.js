@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../database/conn.js';
 
-const Composicao = sequelize.define('Composicao', {
+const Composicao = sequelize.define('composicao', {
     comp_id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -22,6 +22,8 @@ const Composicao = sequelize.define('Composicao', {
         allowNull: false,
         defaultValue: 'GLOBAL'
     }
+},{
+    tableName: 'composicao'
 });
 
 export default Composicao;

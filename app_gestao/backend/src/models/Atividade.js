@@ -4,7 +4,7 @@ import sequelize from "../database/conn.js";
 import Obra from './Obra.js'
 import ClassificacaoArea from "./ClassificacaoArea.js";
 
-const Atividade = sequelize.define('Atividade', {
+const Atividade = sequelize.define('atividade', {
     ativ_id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -33,7 +33,11 @@ const Atividade = sequelize.define('Atividade', {
     ativ_concluida: {
         type: DataTypes.BOOLEAN
     }
+},{
+    tableName: 'atividade'
 });
+
+Obra.hasMany(Atividade)
 
 Atividade.belongsTo(Obra, {
     constraints:true,

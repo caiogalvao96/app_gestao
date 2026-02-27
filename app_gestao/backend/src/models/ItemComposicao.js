@@ -3,7 +3,7 @@ import sequelize from '../database/conn.js';
 import Insumo from './Insumo.js';
 import Composicao from './Composicao.js';
 
-const ItemComposicao = sequelize.define('ItemComposicao', {
+const ItemComposicao = sequelize.define('itemComposicao', {
     item_id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -17,6 +17,8 @@ const ItemComposicao = sequelize.define('ItemComposicao', {
 }, {
     tableName: 'itens_composicao',
     underscored: true
+},{
+    tableName: 'itemComposicao'
 });
 
 // --- ASSOCIAÇÕES ---

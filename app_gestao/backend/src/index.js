@@ -1,6 +1,12 @@
 
 import sequelize from './database/conn.js';
 
+import insumoRoutes from './routes/InsumoRoutes.js';
+import obraRoutes from './routes/ObraRoutes.js';
+import atividadeRoutes from './routes/AtividadeRoutes.js'
+
+import cors from 'cors';
+
 import './models/Obra.js'
 import './models/Atividade.js'
 import './models/Insumo.js'
@@ -14,9 +20,11 @@ import './models/ClassificacaoArea.js'
 import express from 'express'
 
 
+
+
 const app = express()
 
-
+app.use(cors());
 
 app.use(
     express.urlencoded({
@@ -26,6 +34,11 @@ app.use(
 
 app.use(express.json())
 
+// Rotas
+app.use('/insumos', insumoRoutes);
+app.use('/obra', obraRoutes);
+app.use('/atividade', atividadeRoutes)
+
 // Função para validar a conexão
 async function conectarBanco() {
   try {
@@ -33,7 +46,7 @@ async function conectarBanco() {
     console.log('✅ Conexão com o banco de dados realizada com sucesso!');
     
     // Sincroniza os modelos (cria as tabelas se não existirem)
-    await sequelize.sync({ alter: true, force: true });
+    await sequelize.sync({ alter: true });
     console.log('✅ Tabelas sincronizadas.');
   } catch (error) {
     console.error('❌ Erro ao conectar no banco:', error);

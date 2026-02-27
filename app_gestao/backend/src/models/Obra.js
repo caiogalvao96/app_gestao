@@ -1,7 +1,9 @@
 import {DataTypes} from 'sequelize'
 import sequelize  from '../database/conn.js'
 
-const Obra = sequelize.define('Obra', {
+
+
+const Obra = sequelize.define('obra', {
     obra_id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -35,6 +37,9 @@ const Obra = sequelize.define('Obra', {
     }
 
 
+},{
+    tableName: 'obra'
 });
+
 
 export default Obra;

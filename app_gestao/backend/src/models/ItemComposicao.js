@@ -1,35 +1,38 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../database/conn.js';
-import Insumo from './Insumo.js';
-import Composicao from './Composicao.js';
 
-const ItemComposicao = sequelize.define('itemComposicao', {
+const ItemComposicao = sequelize.define('ItemComposicao', {
     item_id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
+    comp_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: { model: 'composicao', key: 'comp_id' }
+    },
+    // Campo para o Insumo (pode ser nulo se o item for uma sub-composição)
+    insumo_id: {
+        type: DataTypes.INTEGER,
+        allowNull: true, 
+        references: { model: 'insumo', key: 'ism_id' }
+    },
+    // Campo para Sub-composição (pode ser nulo se o item for um insumo)
+    sub_comp_id: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        references: { model: 'composicao', key: 'comp_id' }
+    },
     quantidade: {
         type: DataTypes.DECIMAL(10, 4),
         allowNull: false,
-        defaultValue: 1.0000
+        defaultValue: 0
     }
 }, {
-    tableName: 'itens_composicao',
-    underscored: true
-},{
-    tableName: 'itemComposicao'
+    tableName: 'item_composicao',
+    underscored: true,
+    timestamps: false
 });
-
-// --- ASSOCIAÇÕES ---
-
-// A composição "Pai" que está sendo montada
-ItemComposicao.belongsTo(Composicao, { foreignKey: 'composicao_pai_id', as: 'Pai' });
-
-// O item filho (pode ser um Insumo...)
-ItemComposicao.belongsTo(Insumo, { foreignKey: 'insumo_id', as: 'Insumo' });
-
-// (...ou pode ser outra Composição, como a Caixa de Ferramentas dentro de uma Atividade)
-ItemComposicao.belongsTo(Composicao, { foreignKey: 'composicao_filha_id', as: 'Filha' });
 
 export default ItemComposicao;

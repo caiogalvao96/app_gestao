@@ -30,7 +30,6 @@ function App() {
 
   return (
     <>
-      <CatalogoInsumos />
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Login/>}/>

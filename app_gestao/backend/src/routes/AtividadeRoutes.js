@@ -9,4 +9,4 @@ routes.get('/', AtividadeController.index);
 
 routes.get('/:id', AtividadeController.show);
 
-export default routes;
+export default routes;  

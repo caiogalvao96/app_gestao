@@ -2,7 +2,6 @@ import {DataTypes} from 'sequelize'
 import sequelize  from '../database/conn.js'
 
 
-
 const Obra = sequelize.define('obra', {
     obra_id: {
         type: DataTypes.INTEGER,

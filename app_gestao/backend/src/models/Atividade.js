@@ -37,18 +37,5 @@ const Atividade = sequelize.define('atividade', {
     tableName: 'atividade'
 });
 
-Obra.hasMany(Atividade)
-
-Atividade.belongsTo(Obra, {
-    constraints:true,
-    foreignKey: 'obra_id',
-    targetKey: 'obra_id',
-    onDelete: 'CASCADE'
-});
-
-Atividade.belongsTo(ClassificacaoArea, {
-    foreignKey: 'clas_id',
-    as: 'classificacao_area'
-});
 
 export default Atividade; 

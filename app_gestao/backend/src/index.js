@@ -4,6 +4,8 @@ import sequelize from './database/conn.js';
 import insumoRoutes from './routes/InsumoRoutes.js';
 import obraRoutes from './routes/ObraRoutes.js';
 import atividadeRoutes from './routes/AtividadeRoutes.js'
+import composicaoRoutes from './routes/ComposicaoRoutes.js'
+import itemComposicaoRoutes from './routes/ItemComposicaoRoutes.js'
 
 import cors from 'cors';
 
@@ -38,6 +40,8 @@ app.use(express.json())
 app.use('/insumos', insumoRoutes);
 app.use('/obra', obraRoutes);
 app.use('/atividade', atividadeRoutes)
+app.use('/composicao', composicaoRoutes)
+app.use('/itemcomp', itemComposicaoRoutes)
 
 // Função para validar a conexão
 async function conectarBanco() {

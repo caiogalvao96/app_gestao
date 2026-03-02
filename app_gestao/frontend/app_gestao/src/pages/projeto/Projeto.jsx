@@ -7,7 +7,9 @@ import { RiHammerLine, RiStackLine, RiListCheck2, RiDashboardLine, RiCloseFill }
 import styles from './Projeto.module.css'
 import VisaoGeral from './secoes/VisaoGeral'
 import Atividade from './secoes/Atividade';
+import Composicao from './secoes/Composicao';
 import ModalAtividade from '../../components/ModalAtividade';
+import { Component } from 'react';
 
 
 const Projeto = ({projeto}) => {
@@ -21,11 +23,8 @@ const Projeto = ({projeto}) => {
   const renderDetalhe = () => {
     switch(opcao){
       case 1: return <VisaoGeral/>;
-        case 2: return <Atividade showModal={toggleModal} />
-        case 3:
-        return(
-          <h1>Composições</h1>
-        );
+        case 2: return <Atividade showModal={toggleModal} />;
+        case 3: return <Composicao />
         case 4:
         return(
           <h1>Insumos</h1>

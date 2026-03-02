@@ -1,4 +1,6 @@
-import Obra from '../models/Obra.js'
+import { Atividade, Obra } from '../models/index.js';
+
+
 
 class ObraController {
     //Criar nova obra
@@ -38,10 +40,13 @@ class ObraController {
 
     async index(req, res) {
         try {
-            const obra = await Obra.findAll(); // Sem o objeto de configuração
+            const obra = await Obra.findAll({
+                include:[{model: Atividade, as: 'atividades'}]
+            }); // Sem o objeto de configuração
             
             return res.json(obra);
         } catch (error) {
+            console.log(error)
             return res.status(500).json({ error: 'Erro ao buscar obras' });
         }
     }

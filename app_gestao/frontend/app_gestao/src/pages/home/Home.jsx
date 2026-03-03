@@ -6,10 +6,15 @@ import Sidebar from '../../components/Sidebar'
 import styles from './Home.module.css'
 import Modal from '../../components/Modal'
 
-import { Link } from 'react-router-dom';
 import Projeto from '../projeto/Projeto'
 
+import { useObra } from '../../hooks/useObra'
+
 const Home = () => {
+
+  const {obras} = useObra(null);
+
+  const [idSelecionado, setIdSelecionado] = useState(null);
 
   const [sidebar, setSidebar] = useState(false)
 
@@ -23,46 +28,45 @@ const Home = () => {
   const toggleSidebar = () => setSidebar(!sidebar);
 
   // Função para inverter o estado
-  const toggleModal = () => setShowModal(!showModal);
+  const toggleModal = () => {
+    
+    setShowModal(!showModal);
+    //abrirDetalhes
+  
+  }
 
-  const obras = [
-  { id: 1, nome: "Edifício Alpha", cliente: "Construtora X", status: "Em andamento" },
-  { id: 2, nome: "Residencial Solar", cliente: "Cliente Y", status: "Planejamento" },
-  { id: 3, nome: "Galpão Industrial", cliente: "Logística Z", status: "Concluído" },
-  { id: 4, nome: "Galpão Industrial", cliente: "Logística Z", status: "Concluído" },
-  { id: 5, nome: "Galpão Industrial", cliente: "Logística Z", status: "Concluído" }
-];
-
-     const toggleProjeto = () => {
+  const toggleProjeto = (id) => {
 
     setShowProjeto(!showProjeto); 
+    setIdSelecionado(id);
   }
 
 
   return (
     <div className={styles.main}>
-        { !showModal && <Navbar onMenuClick={toggleSidebar} isSidebarOpen={sidebar} showDetail={showDetail} clicou={toggleModal}/>}
+        <Modal aberto={showModal} clicou={toggleModal}/>
+        <Navbar onMenuClick={toggleSidebar} isSidebarOpen={sidebar} showDetail={showDetail} clicou={toggleModal}/>
         <div className={styles.container}>
           { !showModal && <Sidebar isOpen={sidebar} setShowDetail={setShowDetail} onMenuClick={toggleSidebar}/>}
 
-      <div className={styles.listaProjetos}>
+      <div className={styles.listaProjetos}>  
           {/* --- ÁREA DOS CARDS --- */}
-        {showProjeto && <Projeto projeto={toggleProjeto}/>}
+        {showProjeto && <Projeto projeto={toggleProjeto} id={idSelecionado} />}
         {!showProjeto && <div className={styles.content}>
           <div className={styles.gridObras}>
-            {obras.map((obra) => (
-              <div key={obra.id} className={styles.cardObra}>
+            {Array.isArray(obras) && obras.map((obra) => (
+              <div key={obra.obra_id} className={styles.cardObra}>
                 <div className={styles.cardHeader}>
-                  <h3>{obra.nome}</h3>
+                  <h3>{obra.obra_nome}</h3>
                 </div>
                 
                 <div className={styles.cardBody}>
-                  <p><strong>Cliente:</strong> {obra.cliente}</p>
-                  <p><strong>Início:</strong> {obra.inicio}</p>
+                  <p><strong>Localização:</strong> {obra.obra_localizacao}</p>
+                  <p><strong>Resposável:</strong> {obra.obra_resp_obra}</p>
                 </div>
 
                 <div className={styles.cardFooter}>
-                  <button onClick={toggleProjeto} className={styles.btnAcessar}>Acessar detalhes</button>
+                  <button onClick={() => toggleProjeto(obra.obra_id)} className={styles.btnAcessar}>Acessar detalhes</button>
                 </div>
               </div>
             ))}
@@ -70,7 +74,6 @@ const Home = () => {
         </div>}
         {/* ----------------------- */}
       </div>
-          <Modal aberto={showModal} clicou={toggleModal}/>
         </div>
     </div>
   )

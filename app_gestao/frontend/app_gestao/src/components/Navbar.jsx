@@ -1,11 +1,11 @@
-import React from 'react'
+
 
 import styles from'./Navbar.module.css'
-import { useState } from 'react';
+
 
 import { TiThMenu } from "react-icons/ti";
-import { IoClose } from "react-icons/io5";
-import { RiAddFill, RiBuilding2Line, RiLayoutMasonryLine } from "react-icons/ri"
+
+import { RiBuilding2Line, RiLayoutMasonryLine } from "react-icons/ri"
 import { TiPlus } from "react-icons/ti";
 
 const Navbar = ({ onMenuClick, isSidebarOpen, showDetail, clicou}) => {
@@ -30,7 +30,17 @@ const Navbar = ({ onMenuClick, isSidebarOpen, showDetail, clicou}) => {
             <span>{showDetail}</span>
           </>
         );
-      
+        default:
+         return(
+          <div className={styles.cDetalhe}>
+            <RiBuilding2Line className={styles.nIcon}/>
+            <span>{showDetail}</span>
+            <button onClick={clicou}>
+              <TiPlus/>
+               Nova obra
+            </button>
+          </div>
+        );
       }
     }
 

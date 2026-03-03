@@ -3,19 +3,19 @@
     background-color: rgba(0, 0, 0, 0.8);
     width: 100%;
     height: 100%;
-    z-index: 1000;
+    z-index: 1009;
 
     display: flex;
     justify-content: center;
     align-items: center;
-}
+}   
 
 .container{
     width: 35%;
     height: 85%;
-    background-color:  #F8F9FA;
+    background-color:  #1e1e1e;
     border-radius: 10px;
-    border: 1px solid #1e1e1e;
+    border: 1px solid grey;
     z-index: 1001;
 
     display: flex;
@@ -45,9 +45,10 @@
 .groupInputs input{
     border-radius: 5px;
     background-color: transparent;
-    border: 1px solid darkgray;
+    border: 1px solid gray;
     font-size: medium;
     padding: 1px;
+    color: #fefefe;
 
 }
 
@@ -61,9 +62,10 @@
 .mInput input{
     background-color: transparent;
     border-radius: 5px;
-    border: 1px solid darkgray;
+    border: 1px solid gray;
     outline: none;
     padding: 1px;
+    color: #fefefe;
 }
 
 .mInput input:focus{
@@ -107,15 +109,15 @@
 
 .container label{
     font-family: sans-serif;
-    font-weight: bold;
+  
     margin-bottom: 2vh;
-    color: black;
+    color: #fefefe;
 }
 
 .titulo h2 {
     font-family: sans-serif;
     margin-bottom: 3vh;
-    color: black;
+    color: #fefefe;
 }
 
 input {
@@ -123,6 +125,14 @@ input {
 }
 
 .groupInputs input[type="date"]{
-    color: black!important;
+    color: gray!important;
     font-size: medium;
+}
+
+.groupBtn{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
 }

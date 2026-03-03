@@ -4,15 +4,45 @@ import { RiCalendar2Line, RiBuilding2Line, RiMapPin2Line, RiUserFollowLine } fro
 
 import styles from './VisaoGeral.module.css'
 
+import { useObra} from '../../../hooks/useObra'
 
 
-const VisaoGeral = () => {
+const VisaoGeral = ({ idProjeto }) => {
+
+console.log("esse é o indefinido: "+idProjeto)
+
+const { isSaving, obra} = useObra(idProjeto);
+
+const aObra = Array.isArray(obra) ? obra[0] : obra;
+
+const formatarDataBR = (dataIso) => {
+  if (!dataIso) return "Data não informada";
+  
+  // O banco envia "2026-03-09", o split separa em [2026, 03, 09]
+  const [ano, mes, dia] = dataIso.split("-");
+  return `${dia}/${mes}/${ano}`;
+};
+
+
+console.log(aObra)
+
+if (!aObra) {
+    return (
+      <div className={styles.main}>
+        <div className={styles.container}>
+          <span>Carregando dados da obra...</span>
+        </div>
+      </div>
+    );
+  }
+
+
   return (
     <div className={styles.main}>
         <div className={styles.container}>
             <div className={styles.titulo}>
                   <RiBuilding2Line />
-                <span>Informações da obra</span>
+                <span>Informações da obra: {aObra.obra_nome} </span>
             </div>
             <div className={styles.detalhe}>
                 <div className={styles.dEsquerda}>
@@ -23,7 +53,7 @@ const VisaoGeral = () => {
                             Localização:
                         </span>
                     </div>
-                    <span> Jacareí - SP</span>
+                    <span> {aObra.obra_localizacao}</span>
                 </div>
                 <div className={styles.conteudo}>
                     <div className={styles.lTitulo}>
@@ -32,7 +62,7 @@ const VisaoGeral = () => {
                             Data de início:
                         </span>
                     </div>
-                    <span> 19/02/2026 </span>
+                    <span> {formatarDataBR(aObra["obra_data_inicio"])} </span>
                 </div>
                 <div className={styles.conteudo}>
                     <div className={styles.lTitulo}>
@@ -41,7 +71,7 @@ const VisaoGeral = () => {
                             Previsão término:
                         </span>
                     </div>
-                    <span> 20/12/2026</span>
+                    <span> {formatarDataBR(aObra["obra_data_fim"])}</span>
                 </div>
                 </div>
                 <div className={styles.dDireita}>
@@ -52,7 +82,7 @@ const VisaoGeral = () => {
                             Responsável obra:
                         </span>
                     </div>
-                    <span> Danilo Evaristo</span>
+                    <span>{aObra.obra_resp_obra}</span>
                 </div>
                 <div className={styles.conteudo}>
                     <div className={styles.lTitulo}>
@@ -61,7 +91,7 @@ const VisaoGeral = () => {
                             Responsável cliente:
                         </span>
                     </div>
-                    <span> Yamaguchi </span>
+                    <span> {aObra.obra_resp_cliente}  </span>
                 </div>
                 </div>
             </div>

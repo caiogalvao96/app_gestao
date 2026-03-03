@@ -7,8 +7,9 @@ const ModalAtividade = ({dadosAtividade, onClose}) => {
    
   return (
     <div className={styles.modal}>
+        <form>
             <div className={styles.container}>
-                <div className={styles.titulo}>
+                <div className={styles.titulo}>  
                     <h2>Atividade</h2>
                 </div>
                 <div className={styles.group}>
@@ -41,7 +42,8 @@ const ModalAtividade = ({dadosAtividade, onClose}) => {
                     <button onClick={onClose} className={styles.aButton}>Fechar</button>
                 </div>
             </div>
-        </div>
+        </form>
+    </div>
   )
 }
 

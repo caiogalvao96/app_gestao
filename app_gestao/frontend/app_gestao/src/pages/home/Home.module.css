@@ -25,6 +25,7 @@
    padding-top: 10vh;
    width: 100%;
    gap: 15px;
+   grid-auto-flow: row;
  
 }
 

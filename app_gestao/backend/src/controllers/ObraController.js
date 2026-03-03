@@ -41,7 +41,8 @@ class ObraController {
     async index(req, res) {
         try {
             const obra = await Obra.findAll({
-                include:[{model: Atividade, as: 'atividades'}]
+                include:[{model: Atividade, as: 'atividades'}],
+                order: [['obra_id', 'DESC']]
             }); // Sem o objeto de configuração
             
             return res.json(obra);

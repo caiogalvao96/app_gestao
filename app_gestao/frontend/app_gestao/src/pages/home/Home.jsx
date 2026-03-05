@@ -31,8 +31,6 @@ const Home = () => {
   const toggleModal = () => {
     
     setShowModal(!showModal);
-    //abrirDetalhes
-  
   }
 
   const toggleProjeto = (id) => {

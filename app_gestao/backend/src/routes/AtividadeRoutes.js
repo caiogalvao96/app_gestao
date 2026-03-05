@@ -9,4 +9,8 @@ routes.get('/', AtividadeController.index);
 
 routes.get('/:id', AtividadeController.show);
 
+routes.put('/:id', AtividadeController.update);
+
+routes.delete('/:id', AtividadeController.delete);
+
 export default routes;  

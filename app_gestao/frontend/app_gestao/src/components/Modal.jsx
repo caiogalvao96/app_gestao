@@ -8,9 +8,9 @@ import {useObra} from '../hooks/useObra'
 
 
 
-const Modal = ({aberto, clicou, isSaving}) => {      
+const Modal = ({aberto, clicou}) => {       
 
-const { saveObra} = useObra();
+const { saveObra, isSaving} = useObra();
 
 const initialState = {
     obra_nome: '',
@@ -34,6 +34,7 @@ const initialState = {
       onSuccess: () => {
         setFormData(initialState);
         alert("Obra salva com sucesso!");
+        clicou();
         // Limpar formulário ou fechar modal aqui
       }
     });
@@ -128,7 +129,7 @@ const initialState = {
                 <div className={styles.groupBtn}>
                     <button onClick={clicou}>Fechar</button>
                     <button type="submit" disabled={isSaving}>
-                        salvar
+                        {isSaving ? 'Salvando...' : 'Salvar Obra'}
                     </button>
                 </div>
             </div>

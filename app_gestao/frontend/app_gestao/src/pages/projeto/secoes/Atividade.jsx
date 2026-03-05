@@ -8,7 +8,7 @@ import ModalAtividade from '../../../components/ModalAtividade';
 
 
 
-const Atividade = () => {
+const Atividade = ({ idProjeto}) => {
 
 
 const atividade = [
@@ -20,21 +20,32 @@ const atividade = [
 ];
 
 const [atividadeEdicao, setAtvidadeEdicao] = useState(null);
+const [novaAtividade, setNovaAtividade] = useState(false);
+
+const toggleModalAtividade = () => {
+    
+    setNovaAtividade(!novaAtividade);
+  }
 
  
 if(atividadeEdicao) return (
-    <ModalAtividade dadosAtividade={atividadeEdicao} onClose={() => setAtvidadeEdicao(null)}/>
+    <ModalAtividade id ={idProjeto}  dadosAtividade={atividadeEdicao} onClose={() => setAtvidadeEdicao(null)}/>
 )
+
 
 return (
         <div className={styles.acontainer}>
+            {novaAtividade && <ModalAtividade id ={idProjeto} onClose={() => setNovaAtividade(false)}/>}
+
+            {!novaAtividade && ( 
+                <>
             <div className={styles.resumo}>
                 <div className={styles.tAtividade}>
                     <div className={styles.atividade}>
                         <RiTaskLine className={styles.aIcon}/>
                         <h3 className={styles.h3Atividade}>Resumo das atividades</h3>
                     </div>
-                    <button  className={styles.aButton}> <TiPlus/> Criar atividade</button>
+                    <button  className={styles.aButton} onClick={() => setNovaAtividade(true)}> <TiPlus/> Criar atividade</button>
                 </div>
                 <div className={styles.detalhes}>
                     <div className={styles.subDetalhe}>
@@ -42,7 +53,7 @@ return (
                         <progress value={47} max={100} className={styles.progresso} />
                     </div>
                     <div className={styles.subDetalhe}>
-                        <label className={styles.aLabel}>Duração total</label>
+                        <label className={styles.aLabel}>ID PROJETO: {idProjeto} </label>
                         <label>30 dias</label>
                     </div>
                     <div className={styles.subDetalhe}>
@@ -72,6 +83,7 @@ return (
                     </div>
                 ))}
             </div>
+            </> )}
         </div>
        
   )

@@ -12,9 +12,7 @@ import ModalAtividade from '../../components/ModalAtividade';
 import { Component } from 'react';
 
 
-const Projeto = ({projeto, id, aoFechar}) => {
-
-  console.log(id)
+const Projeto = ({ projeto, id }) => {
 
   const[opcao, setOpcao] = useState(1)
 
@@ -26,12 +24,10 @@ const Projeto = ({projeto, id, aoFechar}) => {
   const renderDetalhe = () => {
     switch(opcao){
       case 1: return <VisaoGeral idProjeto={id}/>;
-        case 2: return <Atividade showModal={toggleModal} />;
+        case 2: return <Atividade showModal={toggleModal} idProjeto={id} />;
         case 3: return <Composicao />
         case 4:
-        return(
-          <h1>Insumos</h1>
-        );
+        return <h1>Insumos</h1>
     }
   }
 

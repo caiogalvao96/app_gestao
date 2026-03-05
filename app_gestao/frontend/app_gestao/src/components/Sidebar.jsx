@@ -43,34 +43,34 @@ const Sidebar = ({ isOpen, setShowDetail, onMenuClick}) => {
                 <button onClick={onMenuClick} className={styles.close}><RiArrowLeftSLine className={styles.iClose}/></button>
             </div>
             <ul>
-                <li onClick={() => setShowDetail('projetos')}>
+                <li onClick={() => setShowDetail('Projetos')}>
                   <RiBuilding2Line className={styles.icon}/>
                   Projetos
                 </li>
-                <li onClick={() => setShowDetail('dashboard')}>
+                <li onClick={() => setShowDetail('Dashboard')}>
                   <RiLayoutMasonryLine className={styles.icon}/>
                   Dashboard
                 </li>
-                <li>
+                <li onClick={() => setShowDetail('Planejamento')}>
                   <RiCalendarCheckLine className={styles.icon}/>
                   Planejamento
                 </li>
             </ul>
             <span className={styles.sectionTitle}>Gestão</span>
             <ul>
-                <li>
+                <li onClick={() => setShowDetail('Materiais')}>
                   <RiInboxArchiveLine className={styles.icon}/>
                   Materiais
                 </li>
-                <li>
+                <li onClick={() => setShowDetail('Colaboradores')}>
                   <RiGroupLine className={styles.icon}/>
                   Colaboradores
                 </li>
-                <li>
+                <li onClick={() => setShowDetail('Equipamentos')}>
                   <RiHammerLine className={styles.icon}/>
                   Equipamentos
                 </li>
-                <li>
+                <li onClick={() => setShowDetail('Atividades')}>
                   <RiListCheck2 className={styles.icon}/>
                   Atividades
                 </li>

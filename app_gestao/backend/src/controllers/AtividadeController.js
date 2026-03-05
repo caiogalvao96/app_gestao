@@ -66,6 +66,79 @@ class AtividadeController {
             return res.status(500).json({ error: 'Erro ao buscar' });
         }
     }
+
+    // atividadeController.js
+
+    async update(req, res) {
+        try {
+            const { id } = req.params; // O ID vem da rota (ex: /atividades/:id)
+            const { 
+
+                ativ_descricao,
+                ativ_observacao,
+                ativ_data_inicio,
+                ativ_data_fim,
+                ativ_status,
+                ativ_concluida,
+                obra_id,
+                clas_id,
+                comp_id
+
+            } = req.body; // Campos que você quer atualizar
+
+            // 1. Verificar se a atividade existe
+            const atividade = await Atividade.findByPk(id);
+
+            if (!atividade) {
+                return res.status(404).json({ error: 'Atividade não encontrada' });
+            }
+
+            // 2. Executar a atualização
+            await atividade.update({
+                ativ_descricao,
+                ativ_observacao,
+                ativ_data_inicio,
+                ativ_data_fim,
+                ativ_status,
+                ativ_concluida,
+                obra_id,
+                clas_id,
+                comp_id
+            });
+
+            // 3. Retornar a atividade atualizada
+            return res.json(atividade);
+
+        } catch (error) {
+            console.error("Erro no update de atividade:", error);
+            return res.status(500).json({ error: 'Erro ao atualizar atividade' });
+        }
+    }
+
+    // atividadeController.js
+
+async delete(req, res) {
+    try {
+        const { id } = req.params;
+
+        // 1. Buscar a atividade para ver se ela existe
+        const atividade = await Atividade.findByPk(id);
+
+        if (!atividade) {
+            return res.status(404).json({ error: 'Atividade não encontrada.' });
+        }
+
+        // 2. Deletar o registro do banco de dados
+        await atividade.destroy();
+
+        // 3. Retornar uma mensagem de sucesso (status 204 ou 200 com JSON)
+        return res.status(200).json({ message: 'Atividade removida com sucesso.' });
+
+    } catch (error) {
+        console.error("Erro ao deletar atividade:", error);
+        return res.status(500).json({ error: 'Não foi possível excluir a atividade.' });
+    }
+}
 }
 
 export default new AtividadeController();  

@@ -12,7 +12,7 @@ const Navbar = ({ onMenuClick, isSidebarOpen, showDetail, clicou}) => {
 
   const renderDetalhe = () => {
     switch(showDetail){
-      case 'projetos':
+      case 'Projetos':
         return(
           <div className={styles.cDetalhe}>
             <RiBuilding2Line className={styles.nIcon}/>
@@ -23,18 +23,18 @@ const Navbar = ({ onMenuClick, isSidebarOpen, showDetail, clicou}) => {
             </button>
           </div>
         );
-        case 'dashboard':
+        case 'Dashboard':
         return(
-          <>
+          <div className={styles.cDetalhe}>
             <RiLayoutMasonryLine className={styles.nIcon}/>
             <span>{showDetail}</span>
-          </>
+          </div>
         );
         default:
          return(
           <div className={styles.cDetalhe}>
             <RiBuilding2Line className={styles.nIcon}/>
-            <span>{showDetail}</span>
+            <span>Projetos</span>
             <button onClick={clicou}>
               <TiPlus/>
                Nova obra

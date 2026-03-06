@@ -1,6 +1,7 @@
 .main {
     width: 100vw;
-    background-color:  rgba(0, 0, 0, 0.75);
+    height: 100%;
+    background-color: whitesmoke;
     box-sizing: border-box;
     overflow-y: auto;
     
@@ -9,8 +10,8 @@
 .container {
     display: flex;
     width: 100%;
-    height: 90vh;
-    color: black;
+    height: 92.8vh;
+  
 }
 
 .content {
@@ -30,45 +31,45 @@
 }
 
 .cardObra {
-    background-color: #1e1e1e;
-    border: 1px solid #333;
-    border-radius: 8px;
+    background-color:  #fff;
+    border: 1px solid lightgray;
+    border-radius: 2px;
     padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 12px;
     transition: transform 0.2s, border-color 0.2s;
+    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.3);
     
 }
 
 .cardObra:hover {
     transform: translateY(-5px);
-    border-color: #ffee00; /* Destaque amarelo ao passar o mouse */
+    border-color: lightblue /* Destaque amarelo ao passar o mouse */
 }
 
 .cardHeader {
     display: flex;
     align-items: center;
     gap: 10px;
-    color: #ffee00;
 }
 
 .cardHeader h3 {
     margin: 0;
     font-size: 1.2rem;
-    color: white;
+    color: gray;
 }
 
 .cardBody p {
     margin: 5px 0;
     font-size: 0.9rem;
-    color: #ccc;
+    color: gray;
 }
 
 .btnAcessar {
-    background-color: transparent;
-    border: 1px solid #ffee00;
-    color: #ffee00;
+    background-color: #87CEEB;
+    border: 1px solid  #87CEEB;
+    color:whitesmoke;
     padding: 8px;
     border-radius: 4px;
     cursor: pointer;
@@ -77,8 +78,8 @@
 }
 
 .btnAcessar:hover {
-    background-color: #ffee00;
-    color: black;
+    background-color: transparent;
+    color: #87CEEB;
 }
 
 .listaProjetos{

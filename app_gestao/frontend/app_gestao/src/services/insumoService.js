@@ -1,10 +1,10 @@
 import api from '../api/api'
 
-export const atividadeService = {
+export const insumoService = {
 
     getAll: async (obraId) => {
     try {
-      const url = obraId ? `/atividade?obra_id=${obraId}` : '/atividade';
+      const url = obraId ? `/insumo?obra_id=${obraId}` : '/insumo';
       const res = await api.get(url);
 
       console.log("Resposta da API (res.data):", res.data);
@@ -16,23 +16,23 @@ export const atividadeService = {
   },
 
     create: async (data) => {
-    const res = await api.post('/atividade', data);
+    const res = await api.post('/insumo', data);
     return res.data;
   },
 
     getById: async (id) => {
-    const res = await api.get(`/atividade/${id}`);
+    const res = await api.get(`/insumo/${id}`);
     return res.data;
   },
 
     update: async (id, data) => {
-    const res = await api.put(`/atividade/${id}`, data);
+    const res = await api.put(`/insumo/${id}`, data);
     return res.data;
   },
 
     delete: async (id) => {
-    const res = await api.delete(`/atividade/${id}`);
+    const res = await api.delete(`/insumo/${id}`);
     return res.data;
   },
 
-};
+}

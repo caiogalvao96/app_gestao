@@ -37,8 +37,21 @@ class AtividadeController {
 
     // Listar atividades com dados da Obra (Eager Loading)
     async index(req, res) {
-        try {
+        try {  
+
+            // Pega o obra_id da query string: /atividades?obra_id=14
+            const { obra_id } = req.query;
+
+            // Cria um objeto de filtro dinâmico
+            const whereClause = {};
+            if (obra_id) {
+                whereClause.obra_id = obra_id;
+            }
+
+
             const atividades = await Atividade.findAll({
+                where: whereClause,
+                order: [['ativ_data_inicio', 'ASC']],
                 include: [{
                     model: Obra,
                     as: 'obra' // Deve ser igual ao "as" do arquivo central

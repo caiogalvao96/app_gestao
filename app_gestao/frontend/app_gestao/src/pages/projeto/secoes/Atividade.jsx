@@ -6,11 +6,21 @@ import { TiPlus } from "react-icons/ti";
 import styles from './Atividade.module.css'
 import ModalAtividade from '../../../components/ModalAtividade';
 
+import { useAtividade } from '../../../hooks/useAtividade';
+
 
 
 const Atividade = ({ idProjeto}) => {
 
+const { atividades, isLoading, isError } = useAtividade({idProjeto});
 
+
+console.log('as atividades', atividades)
+console.log('Tipo do ID:', typeof idProjeto);
+console.log('Valor do ID que chegou:', idProjeto);
+
+
+/*
 const atividade = [
     {id: 1, descricao: 'Montagem de infra', dataInicio: '2026-02-19', dataFim: '2026-02-22', atvStatus: 'Agendada', obs: 'Executar numa PP'},
     {id: 2, descricao: 'Passagem de cabos', dataInicio: '2026-02-19', dataFim: '2026-02-22', atvStatus: 'Agendada', obs: 'Executar numa PP'},
@@ -18,6 +28,7 @@ const atividade = [
     {id: 4, descricao: 'Teste e comissionamento', dataInicio: '2026-02-19', dataFim: '2026-02-22', atvStatus: 'Agendada', obs: 'Executar numa PP'},
     {id: 5, descricao: 'Teste e comissionamento', dataInicio: '2026-02-19', dataFim: '2026-02-22', atvStatus: 'Agendada', obs: 'Executar numa PP'},
 ];
+*/
 
 const [atividadeEdicao, setAtvidadeEdicao] = useState(null);
 const [novaAtividade, setNovaAtividade] = useState(false);
@@ -26,6 +37,8 @@ const toggleModalAtividade = () => {
     
     setNovaAtividade(!novaAtividade);
   }
+
+
 
  
 if(atividadeEdicao) return (
@@ -63,25 +76,28 @@ return (
                 </div>
             </div>
             <div className={styles.listaAtividade}>
-                {atividade.map((atv) => (
-                    <div key={atv.id} className={styles.cardAtv}>
-                        <div className={styles.cardInfo}>
-                            <div className={styles.cardHeader}>
-                                <h4>{atv.descricao}</h4>
-                            </div>           
-                            <div className={styles.cardBody}>
-                                <p><strong>Data inicio:</strong> <span>{atv.dataInicio}</span></p>
-                                <p><strong>Data fim:</strong> <span>{atv.dataFim}</span></p>
-                                <p><strong>Status:</strong> <span>{atv.atvStatus}</span></p>
-                                <p><strong>Observação</strong> <span>{atv.obs}</span></p>
+              
+                    {atividades.map((atv) => (
+                        <div key={atv.ativ_id} className={styles.cardAtv}>
+                            <div className={styles.cardInfo}>
+                                <div className={styles.cardHeader}>
+                                    <h4>{atv.descricao}</h4>
+                                </div>           
+                                <div className={styles.cardBody}>
+                                    <p><strong>Descrição</strong> <span>{atv.ativ_descricao}</span></p>
+                                    <p><strong>Data inicio:</strong> <span>{new Date(atv.ativ_data_inicio).toLocaleDateString('pt-BR')}</span></p>
+                                    <p><strong>Data fim:</strong> <span>{new Date(atv.ativ_data_fim).toLocaleDateString('pt-BR')}</span></p>
+                                    <p><strong>Status:</strong> <span>{atv.ativ_status}</span></p>
+                                    <p><strong>Observação</strong> <span>{atv.ativ_observacao}</span></p>
+                                </div>
+                            </div>
+                            <div className={styles.opcoes}>
+                                <button onClick={() => setAtvidadeEdicao(atv)} className={styles.btnOpcao}> <RiEdit2Fill /> Editar</button>
+                                <button className={styles.btnExcluir}> <RiDeleteBin6Line /> Excluir</button>
                             </div>
                         </div>
-                        <div className={styles.opcoes}>
-                            <button onClick={() => setAtvidadeEdicao(atv)} className={styles.btnOpcao}> <RiEdit2Fill /> Editar</button>
-                            <button className={styles.btnExcluir}> <RiDeleteBin6Line /> Excluir</button>
-                        </div>
-                    </div>
-                ))}
+                    ))}
+               
             </div>
             </> )}
         </div>

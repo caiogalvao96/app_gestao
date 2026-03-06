@@ -24,10 +24,7 @@ Atividade.belongsTo(Obra, {
 });
 
 // 3. Relacionamento Atividade -> Classificacao
-Atividade.belongsTo(ClassificacaoArea, {
-    foreignKey: 'clas_id',
-    as: 'classificacao_area'
-});
+Atividade.belongsTo(ClassificacaoArea, {foreignKey: 'clas_id', as: 'classificacao_area'});
 
 // A Composição possui vários itens (Ingredientes)
 Composicao.hasMany(ItemComposicao, { foreignKey: 'comp_id', as: 'itens' });
@@ -42,6 +39,10 @@ ItemComposicao.belongsTo(Composicao, { foreignKey: 'sub_comp_id', as: 'sub_compo
 // Relacionamento Atividade -> Composição (1:N)
 Composicao.hasMany(Atividade, { foreignKey: 'comp_id', as: 'atividade' });
 Atividade.belongsTo(Composicao, { foreignKey: 'comp_id', as: 'composicao' });
+
+//Relacionamento Obra -> Insumo (1:N)
+Obra.hasMany(Insumo, { foreignKey: 'obra_id', as: 'insumo' })
+Insumo.belongsTo(Obra, { foreignKey: 'obra_id', as: 'obra'})
 
 export { sequelize, Obra, Atividade, ClassificacaoArea , Composicao, Insumo, ItemComposicao };
 

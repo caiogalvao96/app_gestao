@@ -9,7 +9,8 @@ class InsumoController {
             ism_descricao, 
             ism_preco, 
             gcp_id, 
-            und_id 
+            und_id,
+            obra_id 
         } = req.body;
 
         // 2. Criamos o registro usando apenas as variáveis extraídas
@@ -18,7 +19,8 @@ class InsumoController {
             ism_descricao, 
             ism_preco, 
             gcp_id, 
-            und_id 
+            und_id,
+            obra_id
         });
 
         // 3. Retornamos o sucesso
@@ -37,7 +39,18 @@ class InsumoController {
     // Listar todos com os relacionamentos (Grupo e Unidade)
     async index(req, res) {
         try {
+
+            // Pega o obra_id da query string: /atividades?obra_id=14
+            const { obra_id } = req.query;
+
+            // Cria um objeto de filtro dinâmico
+            const whereClause = {};
+            if (obra_id) {
+                whereClause.obra_id = obra_id;
+            }
+
             const insumos = await Insumo.findAll({
+                where: whereClause,
                 include: ['grupo', 'unidade'] // Usando os "as" que definimos nos modelos
             });
             return res.json(insumos);

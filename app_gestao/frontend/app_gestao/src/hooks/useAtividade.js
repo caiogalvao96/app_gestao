@@ -1,15 +1,16 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { atividadeService } from '../services/atividadeService';
 
-export function useAtividade(id = null){
+export function useAtividade({ id = null, idProjeto = null } = {}){
     const queryClient = useQueryClient();
 
+       
     const atividadeQuery = useQuery ({
-        queryKey: ['atividades'],
-        queryFn: atividadeService.getAll,
+        queryKey: ['atividades', idProjeto],
+        queryFn: ()=> atividadeService.getAll(idProjeto),
         staleTime: 1000 * 60 * 5,
-        enabled: !id
-    });
+        enabled: !!idProjeto
+    });  
 
     const atividadeByIdQuery = useQuery ({
         queryKey: ['atividades', id],
@@ -46,8 +47,8 @@ export function useAtividade(id = null){
         isError: atividadeQuery.isError || atividadeByIdQuery.isError,
 
         storeAtividade: createMutation.mutate,
-        updateAtividada: updateMutation.mutate,
-        deleteAtividada: deleteMutation.mutate, 
+        updateAtividade: updateMutation.mutate,
+        deleteAtividade: deleteMutation.mutate, 
 
         isSaving: createMutation.isPending || updateMutation.isPending,
         isDeleting: deleteMutation.isPending

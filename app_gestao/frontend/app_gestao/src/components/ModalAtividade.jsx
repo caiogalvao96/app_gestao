@@ -111,7 +111,14 @@ const initialState = {
             </div>
                  
                 <div className={styles.groupButtons} >
-                    <button type='submit' className={styles.aButton}>Salvar</button>
+                    <button type='submit' className={styles.aButton}>{isSaving ? (
+            <>
+                <span className={styles.spinner}></span> 
+                Salvando...
+            </>
+        ) : (
+            'Salvar Atividade'
+        )}</button>
                     <button type='button' onClick={onClose} className={styles.aButton}>Fechar</button>
                 </div>
             </div>

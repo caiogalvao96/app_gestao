@@ -1,25 +1,35 @@
 
 .navbar{
-    background-color: black;
+    background-color: #fff;
     width: 100%;
-    height: 10vh;
+    height: 7vh;
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
+
+    border-bottom: 1px solid #e5e7eb;
+    box-shadow: 1px 1px 1px rgba(0,0,0,0.2);
 
 }
 
 
 .btnMenu {
   background: none;
-  border: none;
+  border: 1px solid lightgrey;
   cursor: pointer;
+  width: 3vw; 
+  height: 6vh;
   transition: transform 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 2vw;
+  border-radius: 5px;
 }
 
 /* Estilizando o ícone especificamente */
 .btnMenu svg {
-  fill: white; /* Cor do ícone */
+  fill: lightblue; /* Cor do ícone */
   width: 4vw; 
   height: 4vh;
   filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.2)); /* Sombra */
@@ -27,7 +37,7 @@
 
 /* Efeito de hover */
 .btnMenu:hover svg {
-  fill: yellow; /* Muda a cor ao passar o mouse */
+  fill: #00BFFF; /* Muda a cor ao passar o mouse */
   transform: scale(1.2);
 }
 
@@ -37,10 +47,11 @@ span{
 }
 
 .menu{
-  width: 50%;
+  width: 10%;
   height: 100%;
   display: flex;
   align-items: center;
+
 }
 
 .detalhe{
@@ -67,34 +78,34 @@ span{
 
 .detalhe button {
 
-    border: none;
-    background-color: yellow;
+    border: 1px solid  #87CEEB;
+    border-radius: 5px;
+    background-color:#F0FFFF;
     width: 35%;
     height: 4vh;
     font-family: sans-serif;
     font-weight: bold;
     transition: 0.6s;
-    color: black;
-
+    color: #00BFFF;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
+    justify-items: center;
+    box-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+
 }
 
-.dethalhe button svg {
-  color: green;
-  margin-right: 5px;
-  size: 4vw;
-}
+
 
 .detalhe button:hover{
-    border: 2px solid yellow;
-    background-color: transparent;
+    border: 2px solid  lightblue;
+    background-color: #87CEEB;
     width: 35%;
     height: 4vh;
     font-family: sans-serif;
     font-weight: bold;
-    color: yellow;
+    color: #fff;
 
 }
 
@@ -106,4 +117,25 @@ span{
 .detalhe button svg {
   width: 3vw;
   height: 3vh;
+}
+
+.logo{
+  width: 40%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+
+
+}
+
+.logo svg{
+  color: #77dd77;
+  width: 5vw;
+  height: 5vh;
+}
+
+.logo span {
+  color: gray;
+  font-family: sans-serif;
+  font-size: larger;
 }

@@ -6,6 +6,7 @@ import styles from'./Navbar.module.css'
 import { TiThMenu } from "react-icons/ti";
 
 import { RiBuilding2Line, RiLayoutMasonryLine } from "react-icons/ri"
+import { LuChartNoAxesCombined } from "react-icons/lu";
 import { TiPlus } from "react-icons/ti";
 
 const Navbar = ({ onMenuClick, isSidebarOpen, showDetail, clicou}) => {
@@ -46,8 +47,13 @@ const Navbar = ({ onMenuClick, isSidebarOpen, showDetail, clicou}) => {
 
   return (
     <div className={styles.navbar}>
+       
         <div className={styles.detalhe}>
           {renderDetalhe()}
+        </div>
+         <div className={styles.logo}>
+            <LuChartNoAxesCombined />
+            <span>Gestão de Orçamentos</span>
         </div>
         <div className={styles.menu}>
           <button className={styles.btnMenu} onClick={onMenuClick}>

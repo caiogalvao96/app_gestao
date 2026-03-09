@@ -66,7 +66,7 @@ return (
                         <progress value={47} max={100} className={styles.progresso} />
                     </div>
                     <div className={styles.subDetalhe}>
-                        <label className={styles.aLabel}>ID PROJETO: {idProjeto} </label>
+                        <label className={styles.aLabel}>Duração</label>
                         <label>30 dias</label>
                     </div>
                     <div className={styles.subDetalhe}>

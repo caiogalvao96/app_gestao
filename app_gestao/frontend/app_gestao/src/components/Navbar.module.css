@@ -81,7 +81,7 @@ span{
     border: 1px solid  #87CEEB;
     border-radius: 5px;
     background-color:#F0FFFF;
-    width: 35%;
+    width: 30%;
     height: 4vh;
     font-family: sans-serif;
     font-weight: bold;
@@ -115,8 +115,7 @@ span{
 }
 
 .detalhe button svg {
-  width: 3vw;
-  height: 3vh;
+
 }
 
 .logo{

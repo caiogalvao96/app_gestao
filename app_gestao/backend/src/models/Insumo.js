@@ -27,9 +27,6 @@ Insumo.belongsTo(GrupoCusto, {
     as: 'grupo'
 });
 
-Insumo.belongsTo(Unidade, {
-    foreignKey: 'und_id',
-    as: 'unidade'
-});
+
 
 export default Insumo;

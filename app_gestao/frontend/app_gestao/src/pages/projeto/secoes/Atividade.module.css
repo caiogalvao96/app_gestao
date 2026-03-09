@@ -3,14 +3,14 @@
     padding: 5px;
     background-color: transparent;
     height: 96%;
-    border-radius: 5px;
+
     box-sizing: border-box;
     
 }
 
 .resumo {
-    border: 1px solid grey;
-    border-radius: 5px;
+    border-bottom: 1px solid grey;
+    
     padding: 2px;
     margin-top: 2vh;
 
@@ -47,8 +47,6 @@
     height: 73%;
     overflow-y: auto;
     margin-top: 1vh;
-    border-radius: 5px;
-    border: 1px solid grey;
     box-sizing: border-box;
 
 }
@@ -62,25 +60,27 @@
 .aLabel{
     font-family: sans-serif;
     font-weight: bold;
-     color: #fefefe;
+     color: gray;
 }
 
 .h3Atividade{
     font-family: sans-serif;
-    color: #fefefe;
+    color: gray;
 }
 
 .aIcon{
     width: 4vw;
     height: 4vh;
-    color: #fefefe;
+    color: #77dd77;
 }
 
 .aButton{
     width: 10vw;
     height: 4vh;
-    background-color: yellow;
-    border: none;
+    background-color:#F0FFFF;
+    border: 1px solid  #87CEEB;
+    border-radius: 5px;
+    color:  #87CEEB;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -88,33 +88,34 @@
     font-weight: bold;
 }
 
-.aButton:hover{
-    border: 1px solid grey;
+.aButton:hover {
+    border: 1px solid  #00BFFF;
+    color:  #00BFFF;
 }
 
 .cardAtv{
-    border: 1px solid grey;
+    border-bottom: 1px solid grey;
     margin: 1vh;
     padding: 1vh;
-    background-color: #1e1e1e;
-    border-radius: 5px;
+    background-color: transparent;
+   
 
     display: flex;
 
 }
 
 .cardBody{
-    background-color: #1e1e1e;
+    background-color: transparent;
 }
 
 .cardBody p{
     font-family: sans-serif;
-    color: #fefefe;
+    color: gray;
 }
 
 .cardHeader h4{
     font-family: sans-serif;
-    color: #fefefe;
+    color: gray;
     
 }
 
@@ -134,9 +135,10 @@
 .btnOpcao{
     width: 10vw;
     height: 4vh;
-    background-color: yellow;
-    border: 1px solid yellow;
-    color: #1f1f1f;
+    background-color:#F0FFFF;
+    border: 1px solid  #87CEEB;
+    border-radius: 5px;
+    color:  #87CEEB;
     font-weight: bolder;
     cursor: pointer;
 }

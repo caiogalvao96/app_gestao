@@ -154,4 +154,4 @@ async delete(req, res) {
 }
 }
 
-export default new AtividadeController();  
+export default new AtividadeController();    

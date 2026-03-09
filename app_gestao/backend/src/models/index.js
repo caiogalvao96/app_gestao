@@ -5,6 +5,7 @@ import ClassificacaoArea from './ClassificacaoArea.js';
 import Composicao from './Composicao.js';
 import Insumo from './Insumo.js';
 import ItemComposicao from './ItemComposicao.js';
+import Unidade from './Unidade.js'
 
 // Aqui é o lugar sagrado das associações!
 // Fazemos aqui porque ambos os models já foram carregados.
@@ -44,5 +45,9 @@ Atividade.belongsTo(Composicao, { foreignKey: 'comp_id', as: 'composicao' });
 Obra.hasMany(Insumo, { foreignKey: 'obra_id', as: 'insumo' })
 Insumo.belongsTo(Obra, { foreignKey: 'obra_id', as: 'obra'})
 
-export { sequelize, Obra, Atividade, ClassificacaoArea , Composicao, Insumo, ItemComposicao };
+//Relacionamento insumo -> unidade de medidida
+Insumo.belongsTo(Unidade, { foreignKey: 'und_id', as: 'unidade' });
+Unidade.hasMany(Insumo, { foreignKey: 'und_id', as: 'insumo' });
+
+export { sequelize, Obra, Atividade, ClassificacaoArea , Composicao, Insumo, ItemComposicao, Unidade };
 

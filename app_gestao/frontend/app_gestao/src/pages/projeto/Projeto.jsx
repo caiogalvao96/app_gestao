@@ -10,6 +10,7 @@ import Atividade from './secoes/Atividade';
 import Composicao from './secoes/Composicao';
 import ModalAtividade from '../../components/ModalAtividade';
 import { Component } from 'react';
+import Insumo from './secoes/Insumo';
 
 
 const Projeto = ({ projeto, id }) => {
@@ -25,9 +26,8 @@ const Projeto = ({ projeto, id }) => {
     switch(opcao){
       case 1: return <VisaoGeral idProjeto={id}/>;
         case 2: return <Atividade showModal={toggleModal} idProjeto={id} />;
-        case 3: return <Composicao />
-        case 4:
-        return <h1>Insumos</h1>
+        case 3: return <Composicao idProjeto={id}/>
+        case 4: return <Insumo idProjeto={id} />
     }
   }
 

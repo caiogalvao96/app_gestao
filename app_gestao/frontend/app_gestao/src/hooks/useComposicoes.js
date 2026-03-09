@@ -12,13 +12,6 @@ export function useComposicoes(id = null) {
     enabled: !id, // Só busca tudo se não for passado um ID específico
   });
 
-    console.log("Monitorando Hook useComposicoes:", {
-    dadosBrutos: composicoesQuery.data,
-    estaCarregando: composicoesQuery.isLoading,
-    teveErro: composicoesQuery.isError,
-    erroDetalhado: composicoesQuery.error
-  });
-
   // 2. BUSCAR UMA POR ID (getById)
   const composicaoByIdQuery = useQuery({
     queryKey: ['composicoes', id],

@@ -66,7 +66,6 @@ li{
     height: 5vh; /* Evite 100% se o pai não tiver altura fixa */
     width: 13em;  /* Seu tamanho original */
     border: none;
-    border-bottom: 1px solid  #87CEEB;
     font-family: sans-serif;
     font-size: small;
     font-weight: bold;
@@ -76,7 +75,7 @@ li{
     display: flex;
     align-items: center;
     justify-content: center;
-    color:  #87CEEB;
+    color:  gray;
     
     /* Prevenção de quebra */
     box-sizing: border-box; 
@@ -142,5 +141,5 @@ li{
 .btnProjeto svg{
     width: 3vw;
     height: 3vh;
-    color:#87CEEB;
+    color:gray;
 }

@@ -1,0 +1,153 @@
+.main{
+   box-sizing: border-box;
+    width: 100%;
+    height: 99%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.main h2 {
+    font-family: sans-serif;
+    color: #87CEEB;
+    margin-bottom: 2vh;
+}
+
+.opcoes {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 8%;
+    border-bottom: 1px solid lightgray;
+    margin-bottom: 3vh;
+}
+
+.btnInsumo {
+    border: 1px solid  #87CEEB;
+    border-radius: 5px;
+    background-color:#F0FFFF;
+    font-family: sans-serif;
+    font-weight: bold;
+    transition: 0.6s;
+    color: #00BFFF;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10%;
+    height: 70%;
+}
+
+.btnInsumo:hover {
+    border: 1px solid  #00BFFF;
+    color:  #00BFFF;
+}
+
+.btnInsumo svg {
+    height: 3vh;
+    width: 1vw;
+}
+
+.spanIns {
+    font-family: sans-serif;
+    color: gray;
+    font-size: medium;
+}
+
+.listaInsumos {
+
+    width: 100%;
+    height: 79%;
+}
+
+.cardIns {
+    display: flex;
+    width: 99,8%;
+    height: 6vh;
+    border: 1px solid rgb(236, 234, 234);
+    align-items: center;
+
+}
+
+.cDescricao {
+    width: 40%;
+    height: 100%;
+    text-align: left;
+    margin-left: 1vw;
+    display: flex;
+    align-items: center;
+     
+}
+
+.cPreco{
+    width: 10%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+     
+}
+
+.cUnd {
+    width: 10%;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.lista{
+    display: flex;
+    width: 100%;
+    height: 10%;
+    background-color: rgb(236, 234, 234);
+    align-items: center;
+    border: 1px rgb(236, 234, 234);
+}
+
+.spanLista{
+   font-family: sans-serif;
+   font-size: large;
+   font-weight: bold;
+   color: slategray;
+}
+
+.lista div {
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.containerBtn {
+    display: flex;
+    justify-content: space-evenly;
+    width: 40%;
+    height: 100%;
+}
+
+.containerBtn button {
+    height: 100%;
+    width: 4vw;
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.containerBtn button svg {
+    height: 60%;
+    width: 5vw;
+}
+
+.containerIns{
+    height: 89%;
+    width: 100%;
+    overflow-y: auto;
+    box-sizing: border-box;
+}

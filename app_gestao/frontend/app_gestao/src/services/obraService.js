@@ -7,7 +7,6 @@ export const obraService = {
       const res = await api.get('/obra');
       return res.data;
     } catch (error) {
-      console.error("Erro no Service (getAll):", error);
       throw error; // Repassa o erro para o TanStack Query detectar o 'isError'
     }
   },

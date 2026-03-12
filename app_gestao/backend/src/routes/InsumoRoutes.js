@@ -12,4 +12,6 @@ routes.get('/', InsumoController.index);
 // Rota para buscar um específico (GET)
 routes.get('/:id', InsumoController.show);
 
+routes.delete('/:id', InsumoController.delete);
+
 export default routes;

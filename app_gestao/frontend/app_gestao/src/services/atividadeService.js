@@ -6,8 +6,6 @@ export const atividadeService = {
     try {
       const url = obraId ? `/atividade?obra_id=${obraId}` : '/atividade';
       const res = await api.get(url);
-
-      console.log("Resposta da API (res.data):", res.data);
       return res.data;
     } catch (error) {
       console.error("Erro no Service (getAll):", error);

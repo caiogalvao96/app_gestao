@@ -11,6 +11,9 @@ export const composicaoService = {
       throw error; // Repassa o erro para o TanStack Query detectar o 'isError'
     }
   },
+
+ 
+  
   
   getById: async (id) => {
     const res = await api.get(`/composicao/${id}`);

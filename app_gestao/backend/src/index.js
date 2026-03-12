@@ -38,7 +38,7 @@ app.use(
 app.use(express.json())
 
 // Rotas
-app.use('/insumos', insumoRoutes);
+app.use('/insumo', insumoRoutes);
 app.use('/obra', obraRoutes);
 app.use('/atividade', atividadeRoutes)
 app.use('/composicao', composicaoRoutes)
@@ -52,7 +52,7 @@ async function conectarBanco() {
     console.log('✅ Conexão com o banco de dados realizada com sucesso!');
     
     // Sincroniza os modelos (cria as tabelas se não existirem)
-    await sequelize.sync({ alter: true });
+    await sequelize.sync({ alter: true, force: true });
     console.log('✅ Tabelas sincronizadas.');
   } catch (error) {
     console.error('❌ Erro ao conectar no banco:', error);

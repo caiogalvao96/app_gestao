@@ -32,9 +32,37 @@ const Atividade = sequelize.define('atividade', {
     },
     ativ_concluida: {
         type: DataTypes.BOOLEAN
+    },
+    ativ_valor_unitario: {
+        type: DataTypes.DECIMAL(12, 2),
+        allowNull: false,
+        defaultValue: 0
+    },
+    ativ_valor_total: {
+        type: DataTypes.DECIMAL(12, 2),
+        allowNull: false,
+        defaultValue: 0
+    },
+    // Chaves Estrangeiras (FKs) que conectam tudo
+    obra_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: { model: 'obra', key: 'obra_id' }
+    },
+    comp_id: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        references: { model: 'composicao', key: 'comp_id' }
+    },
+    clas_id: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        references: { model: 'classificacao_area', key: 'clas_id' }
     }
 },{
-    tableName: 'atividade'
+    tableName: 'atividade',
+    underscored: true,
+    timestamps: true
 });
 
 

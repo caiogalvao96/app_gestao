@@ -14,12 +14,6 @@ const Atividade = ({ idProjeto}) => {
 
 const { atividades, isLoading, isError } = useAtividade({idProjeto});
 
-
-console.log('as atividades', atividades)
-console.log('Tipo do ID:', typeof idProjeto);
-console.log('Valor do ID que chegou:', idProjeto);
-
-
 /*
 const atividade = [
     {id: 1, descricao: 'Montagem de infra', dataInicio: '2026-02-19', dataFim: '2026-02-22', atvStatus: 'Agendada', obs: 'Executar numa PP'},

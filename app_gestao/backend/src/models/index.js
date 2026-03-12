@@ -27,16 +27,6 @@ Atividade.belongsTo(Obra, {
 // 3. Relacionamento Atividade -> Classificacao
 Atividade.belongsTo(ClassificacaoArea, {foreignKey: 'clas_id', as: 'classificacao_area'});
 
-// A Composição possui vários itens (Ingredientes)
-Composicao.hasMany(ItemComposicao, { foreignKey: 'comp_id', as: 'itens' });
-ItemComposicao.belongsTo(Composicao, { foreignKey: 'comp_id', as: 'composicao_pai' });
-
-// O Item pode ser um Insumo
-ItemComposicao.belongsTo(Insumo, { foreignKey: 'insumo_id', as: 'insumo' });
-
-// O Item pode ser uma Sub-Composição
-ItemComposicao.belongsTo(Composicao, { foreignKey: 'sub_comp_id', as: 'sub_composicao' });
-
 // Relacionamento Atividade -> Composição (1:N)
 Composicao.hasMany(Atividade, { foreignKey: 'comp_id', as: 'atividade' });
 Atividade.belongsTo(Composicao, { foreignKey: 'comp_id', as: 'composicao' });
@@ -49,5 +39,31 @@ Insumo.belongsTo(Obra, { foreignKey: 'obra_id', as: 'obra'})
 Insumo.belongsTo(Unidade, { foreignKey: 'und_id', as: 'unidade' });
 Unidade.hasMany(Insumo, { foreignKey: 'und_id', as: 'insumo' });
 
-export { sequelize, Obra, Atividade, ClassificacaoArea , Composicao, Insumo, ItemComposicao, Unidade };
+// O CORAÇÃO: COMPOSIÇÃO E SEUS ITENS ---
+
+// 1. A Composição "Pai" possui vários itens nela
+Composicao.hasMany(ItemComposicao, { 
+    foreignKey: 'comp_id', 
+    as: 'itens', 
+    onDelete: 'CASCADE' // Se deletar a composição, remove os itens dela
+});
+ItemComposicao.belongsTo(Composicao, { foreignKey: 'comp_id', as: 'composicao_pai' });
+
+// 2. Um ItemComposicao pode ser um Insumo
+ItemComposicao.belongsTo(Insumo, { foreignKey: 'insumo_id', as: 'insumo' });
+Insumo.hasMany(ItemComposicao, { foreignKey: 'insumo_id', as: 'usos_em_composicoes' });
+
+// 3. Um ItemComposicao pode ser uma Sub-Composição (Composição Auxiliar)
+ItemComposicao.belongsTo(Composicao, { foreignKey: 'sub_comp_id', as: 'sub_composicao' });
+// Importante: Indica que uma composição pode estar dentro de várias outras
+Composicao.hasMany(ItemComposicao, { foreignKey: 'sub_comp_id', as: 'onde_e_usada' });
+
+Composicao.belongsTo(Unidade, { foreignKey: 'und_id', as: 'unidade' });
+Unidade.hasMany(Composicao, { foreignKey: 'und_id' });
+
+
+
+export { sequelize, Obra, Atividade, ClassificacaoArea, Composicao, Insumo, ItemComposicao, Unidade };
+
+
 

@@ -70,6 +70,29 @@ class InsumoController {
             return res.status(500).json({ error: 'Erro ao buscar' });
         }
     }
+
+    async delete(req, res) {
+    try {
+        const { id } = req.params;
+
+        // 1. Buscar a atividade para ver se ela existe
+        const insumo = await Insumo.findByPk(id);
+
+        if (!insumo) {
+            return res.status(404).json({ error: 'Atividade não encontrada.' });
+        }
+
+        // 2. Deletar o registro do banco de dados
+        await insumo.destroy();
+
+        // 3. Retornar uma mensagem de sucesso (status 204 ou 200 com JSON)
+        return res.status(200).json({ message: 'Atividade removida com sucesso.' });
+
+    } catch (error) {
+        console.error("Erro ao deletar atividade:", error);
+        return res.status(500).json({ error: 'Não foi possível excluir a atividade.' });
+        }
+    }
 }
 
 export default new InsumoController();

@@ -9,8 +9,6 @@ import { useObra} from '../../../hooks/useObra'
 
 const VisaoGeral = ({ idProjeto }) => {
 
-console.log("esse é o indefinido: "+idProjeto)
-
 const { isSaving, obra} = useObra(idProjeto);
 
 const aObra = Array.isArray(obra) ? obra[0] : obra;
@@ -22,9 +20,6 @@ const formatarDataBR = (dataIso) => {
   const [ano, mes, dia] = dataIso.split("-");
   return `${dia}/${mes}/${ano}`;
 };
-
-
-console.log(aObra)
 
 if (!aObra) {
     return (

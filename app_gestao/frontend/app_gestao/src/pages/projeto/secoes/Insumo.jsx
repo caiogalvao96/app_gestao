@@ -1,39 +1,42 @@
 import React, { useState } from 'react'
 
 import styles from './Insumo.module.css'
-import { CiImport } from "react-icons/ci";
+import { LuImport } from "react-icons/lu";
 import { TiPlus } from "react-icons/ti";
 import { FaRegTrashCan } from "react-icons/fa6";
 import { MdOutlineEdit } from "react-icons/md";
 import ModalInsumo from '../../../components/ModalInsumo';
+import { useInsumo } from '../../../hooks/useInsumo'
 
 const Insumo = ({ idProjeto }) => {
 
 const [ novoInsumo, setNovoInsumo ] = useState(false);
 
-const ins = [
-    { id: 1, descricao:'Cantoneira', und:'un', preco:'120,50' },
-    { id: 2, descricao:'terminal tubolar', und:'un', preco:'5,50' },
-    { id: 3, descricao:'Eletroduto', und:'un', preco:'86,50' },
-    { id: 4, descricao:'Condulete 2"', und:'un', preco:'60,45' },
-    { id: 5, descricao:'Unidute cônico', und:'un', preco:'20,10' },
-    { id: 6, descricao:'Cantoneira', und:'un', preco:'120,50' },
-    { id: 7, descricao:'terminal tubolar', und:'un', preco:'5,50' },
-    { id: 8, descricao:'Eletroduto', und:'un', preco:'86,50' },
-    { id: 9, descricao:'Condulete 2"', und:'un', preco:'60,45' },
-    { id: 10, descricao:'Unidute cônico', und:'un', preco:'20,10' },
-]
+const { insumos, isLoading, isError, deleteInsumo } = useInsumo({idProjeto});
+
+// Estado para controlar o modal de edição
+const [insumoParaEditar, setInsumoParaEditar] = useState(null);
+
+const handleDelete = (id) => {
+    if (window.confirm("Tem certeza que deseja excluir este insumo?")) {
+        deleteInsumo(id);
+    }
+};
+
+const handleCloseModal = () => {
+    setNovoInsumo(false);
+    setInsumoParaEditar(null);
+};
 
   return (
     <div className={styles.main}>
-        {novoInsumo && <ModalInsumo id={idProjeto} onClose={() => setNovoInsumo(false)} />}
+        {(novoInsumo || insumoParaEditar) && <ModalInsumo id={idProjeto} onClose={handleCloseModal} insumoExistente={insumoParaEditar}/>}
 
-        {!novoInsumo && (
             <div className={styles.main}>
         <h2>Insumos ⚒️</h2>
         <div className={styles.opcoes}>
-            <button className={styles.btnInsumo} onClick={() => setNovoInsumo(true)} ><TiPlus />Criar insumo</button>
-            <button className={styles.btnInsumo}><CiImport /> Importar insumo</button>
+            <button className={styles.btnInsumo} onClick={() => setNovoInsumo(true)} ><TiPlus /></button>
+            <button className={styles.btnInsumo}><LuImport /></button>
         </div>
         <div className={styles.listaInsumos}>
             <div className={styles.lista}>
@@ -48,27 +51,33 @@ const ins = [
                 </div>
             </div>
             <div className={styles.containerIns}>
-                {ins.map((i) => (
-                <div className={styles.cardIns}>
+                {insumos?.map((i) => (
+                <div className={styles.cardIns} key={i.ism_id}>
                         <div className={styles.cDescricao}>
-                            <span className={styles.spanIns}>{i.descricao}</span>
+                            <span className={styles.spanIns}>{i.ism_descricao}</span>
                         </div>
                         <div className={styles.cUnd} >
-                            <span className={styles.spanIns}>{i.und}</span>
+                            <span className={styles.spanIns}>{i.unidade?.und_codigo || 'N/A'}</span>
                         </div>
                         <div className={styles.cPreco} >
-                            <span className={styles.spanIns}>{i.preco}</span>
+                            <span className={styles.spanIns}>{i.ism_preco 
+                                    ? Number(i.ism_preco).toLocaleString('pt-BR', { 
+                                        style: 'currency', 
+                                        currency: 'BRL' 
+                                        }) 
+                                    : 'R$ 0,00'}
+                            </span>
                         </div>
                         <div className={styles.containerBtn}>
-                            <button><FaRegTrashCan /></button>
-                            <button><MdOutlineEdit /></button>
+                            <button onClick={()=> handleDelete(i.ism_id)} ><FaRegTrashCan /></button>
+                            <button onClick={() => setInsumoParaEditar(i)} 
+                               title="Editar"><MdOutlineEdit /></button>
                         </div>
                  </div>
                 ))}
             </div>
         </div>
         </div>
-        )}
     </div>
   )
 }

@@ -6,8 +6,6 @@ export const insumoService = {
     try {
       const url = obraId ? `/insumo?obra_id=${obraId}` : '/insumo';
       const res = await api.get(url);
-
-      console.log("Resposta da API (res.data):", res.data);
       return res.data;
     } catch (error) {
       console.error("Erro no Service (getAll):", error);

@@ -8,9 +8,11 @@ export function useComposicoes(id = null) {
   const composicoesQuery = useQuery({
     queryKey: ['composicoes'],
     queryFn: composicaoService.getAll,
-    staleTime: 1000 * 60 * 5,
+    //staleTime: 1000 * 60 * 5,
+    staleTime:0,
     enabled: !id, // Só busca tudo se não for passado um ID específico
   });
+
 
   // 2. BUSCAR UMA POR ID (getById)
   const composicaoByIdQuery = useQuery({

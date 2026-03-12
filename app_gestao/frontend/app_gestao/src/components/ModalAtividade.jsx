@@ -31,7 +31,6 @@ const initialState = {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
     storeAtividade(formData, {
       onSuccess: () => {
         setFormData(initialState);

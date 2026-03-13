@@ -72,7 +72,7 @@ class ComposicaoController{
     try {
         // Buscamos todas, mas podemos ordenar por nome
         const composicoes = await Composicao.findAll({
-            order: [['comp_nome', 'ASC']],
+            order: [['comp_id', 'ASC']],
             include: [{ model: Unidade, as: 'unidade', attributes: ['und_codigo'] }]
         });
         

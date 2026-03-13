@@ -61,6 +61,15 @@ Composicao.hasMany(ItemComposicao, { foreignKey: 'sub_comp_id', as: 'onde_e_usad
 Composicao.belongsTo(Unidade, { foreignKey: 'und_id', as: 'unidade' });
 Unidade.hasMany(Composicao, { foreignKey: 'und_id' });
 
+Obra.hasMany(Composicao, { 
+    foreignKey: 'obra_id', 
+    as: 'composicoes_locais',
+    onDelete: 'CASCADE' // Se a obra for deletada, as locais morrem. As globais (null) ficam.
+});
+Composicao.belongsTo(Obra, { 
+    foreignKey: 'obra_id', 
+    as: 'obra_dona' 
+});
 
 
 export { sequelize, Obra, Atividade, ClassificacaoArea, Composicao, Insumo, ItemComposicao, Unidade };

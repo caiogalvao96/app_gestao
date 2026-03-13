@@ -52,7 +52,7 @@ async function conectarBanco() {
     console.log('✅ Conexão com o banco de dados realizada com sucesso!');
     
     // Sincroniza os modelos (cria as tabelas se não existirem)
-    await sequelize.sync({ alter: true, force: true });
+    await sequelize.sync({ alter: true });
     console.log('✅ Tabelas sincronizadas.');
   } catch (error) {
     console.error('❌ Erro ao conectar no banco:', error);

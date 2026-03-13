@@ -1,3 +1,10 @@
+.main{
+    width: 100%;
+    height: 85%;
+    display: block;
+    justify-items: center;
+}
+
 .mainComp{
     width: 100%;
     height: 97%;
@@ -87,4 +94,55 @@
 
 .opcoesComp button svg:hover {
    color: #00BFFF;
+}
+
+.formulario{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-around;
+}
+
+
+
+.group{
+    display: flex;
+    flex-direction: column;
+}
+
+.formulario .group input {
+    height: 21px;
+    border: 1px solid lightgray;
+}
+
+.formulario  select {
+    height: 25px;
+    border: 1px solid lightgray;
+
+}
+
+.formulario button {
+    width: 10vw;
+    height: 4vh;
+}
+
+.acoes{
+    width: 100%;
+    margin-top: 2vh;
+    height: 5vh;
+    padding-left: 5vw;
+}
+
+.aselect {
+    width: 30%;
+}
+
+.container {
+   
+    width: 100%;
+    height: 78%;
+}
+
+.descricao {
+    width: 35vw;
 }

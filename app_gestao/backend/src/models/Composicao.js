@@ -21,14 +21,27 @@ const Composicao = sequelize.define('composicao', {
     },
     // Campo para separar as composições globais das específicas
     comp_tipo: {
-        type: DataTypes.ENUM('GLOBAL', 'OBRA', 'AUXILIAR'),
+        type: DataTypes.ENUM('PRINCIPAL', 'AUXILIAR'),
         allowNull: false,
-        defaultValue: 'GLOBAL'
+        defaultValue: 'PRINCIPAL'
     },
     comp_valor_total:{
         type: DataTypes.DECIMAL(12,2),
         allowNull: false,
         defaultValue: 0
+    },
+    comp_is_global: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+    },
+    comp_obra_id: {
+        type: DataTypes.INTEGER,
+        allowNull: true, // Null apenas se for Global
+        references: {
+            model: 'obra',
+            key: 'obra_id',
+        },
     }
 },{
     tableName: 'composicao'

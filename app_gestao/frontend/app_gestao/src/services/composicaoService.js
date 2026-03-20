@@ -2,9 +2,10 @@ import api from '../api/api'
 
 export const composicaoService = {
   // getAll com tratamento de erro básico e log para conferência
-  getAll: async () => {
+    getAll: async (obraId) => {
     try {
-      const res = await api.get('/composicao');
+      const url = obraId ? `/composicao?obra_id=${obraId}` : '/composicao';
+      const res = await api.get(url);
       return res.data;
     } catch (error) {
       console.error("Erro no Service (getAll):", error);
@@ -12,9 +13,6 @@ export const composicaoService = {
     }
   },
 
- 
-  
-  
   getById: async (id) => {
     const res = await api.get(`/composicao/${id}`);
     return res.data;

@@ -50,8 +50,8 @@ Composicao.hasMany(ItemComposicao, {
 ItemComposicao.belongsTo(Composicao, { foreignKey: 'comp_id', as: 'composicao_pai' });
 
 // 2. Um ItemComposicao pode ser um Insumo
-ItemComposicao.belongsTo(Insumo, { foreignKey: 'insumo_id', as: 'insumo' });
-Insumo.hasMany(ItemComposicao, { foreignKey: 'insumo_id', as: 'usos_em_composicoes' });
+ItemComposicao.belongsTo(Insumo, { foreignKey: 'ism_id', as: 'insumo' });
+Insumo.hasMany(ItemComposicao, { foreignKey: 'ism_id', as: 'usos_em_composicoes' });
 
 // 3. Um ItemComposicao pode ser uma Sub-Composição (Composição Auxiliar)
 ItemComposicao.belongsTo(Composicao, { foreignKey: 'sub_comp_id', as: 'sub_composicao' });

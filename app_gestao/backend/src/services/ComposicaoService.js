@@ -30,7 +30,7 @@ class ComposicaoService {
             itens.forEach(item => {
                 let precoUnitario = 0;
 
-                if (item.insumo_id && item.insumo) {
+                if (item.ism_id && item.insumo) {
                     // É um insumo direto
                     precoUnitario = parseFloat(item.insumo.ism_preco) || 0;
                 } else if (item.sub_comp_id && item.sub_composicao) {

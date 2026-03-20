@@ -1,17 +1,17 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { composicaoService } from '../services/composicaoService';
 
-export function useComposicoes(id = null) {
+export function useComposicoes({id = null, idProjeto = null} = {} ) {
   const queryClient = useQueryClient();
 
   // 1. BUSCAR TODAS (getAll)
   const composicoesQuery = useQuery({
-    queryKey: ['composicoes'],
-    queryFn: composicaoService.getAll,
+    queryKey: ['composicoes', idProjeto],
+    queryFn: () => composicaoService.getAll(idProjeto),
     //staleTime: 1000 * 60 * 5,
     staleTime:0,
     enabled: !id, // Só busca tudo se não for passado um ID específico
-  });
+  }); 
 
 
   // 2. BUSCAR UMA POR ID (getById)

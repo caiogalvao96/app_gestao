@@ -9,4 +9,8 @@ routes.get('/', ComposicaoController.index);
 
 routes.get('/:id', ComposicaoController.show);
 
+routes.put('/:id', ComposicaoController.update);
+
+routes.delete('/:id', ComposicaoController.delete);
+
 export default routes;  

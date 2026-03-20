@@ -4,9 +4,12 @@ import styles from './ModalAtividade.module.css'
 
 import { useAtividade } from '../hooks/useAtividade'
 
+import { useComposicoes } from '../hooks/useComposicoes'
 
 
-const ModalAtividade = ({dadosAtividade = {}, onClose, id}) => {
+
+
+const ModalAtividade = ({dadosAtividade = {}, onClose, idProjeto }) => {
 
 const {storeAtividade, isSaving } = useAtividade();
 
@@ -17,9 +20,9 @@ const initialState = {
     ativ_data_fim: '',
     ativ_status: dadosAtividade?.status || 'Pendente',
     ativ_concluida: dadosAtividade?.concluida || false, // Booleano: passar true ou false no JSON (sem aspas)
-    obra_id: id,
+    obra_id: idProjeto,
     clas_id: null,
-    comp_id: null
+    comp_id: ''
   };
 
   const [formData, setFormData] = useState(initialState)
@@ -40,6 +43,10 @@ const initialState = {
     });
   };
 
+  //carregando as composições disponiveis 
+  const { composicoes, isLoading: isLoadingComp, isError: isErrorComp } = useComposicoes({ idProjeto });
+
+  const listaComposicoes = composicoes;
 
    
   return (
@@ -47,7 +54,7 @@ const initialState = {
         <form onSubmit={handleSubmit} className={styles.modal}>
             <div className={styles.container}>
                 <div className={styles.titulo}>  
-                    <h2>Atividade --- {id} </h2>
+                    <h2>Atividade --- {idProjeto} </h2>
                 </div>
                 <div className={styles.group}>
                     <div className={styles.mInput}>
@@ -95,19 +102,38 @@ const initialState = {
                         />
                     </div>
                 </div>
-                <div className={styles.mInput}>
-                <label>Status</label>
-                <select 
-                    name="ativ_status" 
-                    value={formData.ativ_status} 
-                    onChange={handleChange}
-                    className={styles.nativeSelect}
-                >
-                    <option value="Pendente">Pendente</option>
-                    <option value="Atrasada">Em andamento</option>
-                    <option value="Concluída">Concluída</option>
-                </select>
-            </div>
+                <div className={styles.group}>
+                    <div className={styles.groupInputs}>
+                        <label>Status</label>
+                        <select 
+                            name="ativ_status" 
+                            value={formData.ativ_status} 
+                            onChange={handleChange}
+                            className={styles.nativeSelect}
+                        >
+                            <option value="Pendente">Pendente</option>
+                            <option value="Atrasada">Em andamento</option>
+                            <option value="Concluída">Concluída</option>
+                        </select>
+                    </div>
+                    <div className={styles.groupInputs}>
+                        <label>Recurso</label>
+                        <select 
+                            name="comp_id" 
+                            value={formData.comp_id} 
+                            onChange={handleChange}
+                            className={styles.nativeSelect}
+                        >
+                            <option value="">
+                                Escolha uma composição...
+                            </option>
+                            {composicoes?.map((c) => (
+                                <option key={c.comp_id} value={c.comp_id}>{c.comp_nome}</option>
+                            ))}
+                            
+                        </select>
+                    </div>
+                </div>
                  
                 <div className={styles.groupButtons} >
                     <button type='submit' className={styles.aButton}>{isSaving ? (

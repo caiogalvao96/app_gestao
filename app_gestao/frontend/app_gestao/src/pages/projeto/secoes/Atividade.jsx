@@ -8,11 +8,18 @@ import ModalAtividade from '../../../components/ModalAtividade';
 
 import { useAtividade } from '../../../hooks/useAtividade';
 
+import { useComposicoes } from '../../../hooks/useComposicoes'
+
+
 
 
 const Atividade = ({ idProjeto}) => {
 
 const { atividades, isLoading, isError } = useAtividade({idProjeto});
+
+
+
+
 
 /*
 const atividade = [
@@ -36,13 +43,13 @@ const toggleModalAtividade = () => {
 
  
 if(atividadeEdicao) return (
-    <ModalAtividade id ={idProjeto}  dadosAtividade={atividadeEdicao} onClose={() => setAtvidadeEdicao(null)}/>
+    <ModalAtividade idProjeto ={idProjeto}  dadosAtividade={atividadeEdicao} onClose={() => setAtvidadeEdicao(null)}/>
 )
 
 
 return (
         <div className={styles.acontainer}>
-            {novaAtividade && <ModalAtividade id ={idProjeto} onClose={() => setNovaAtividade(false)}/>}
+            {novaAtividade && <ModalAtividade idProjeto ={idProjeto} onClose={() => setNovaAtividade(false)}/>}
 
             {!novaAtividade && ( 
                 <>

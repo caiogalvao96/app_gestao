@@ -1,4 +1,4 @@
-import { Atividade, Obra } from '../models/index.js';
+import { Obra, Atividade } from '../models/index.js';
 
 
 
@@ -61,6 +61,71 @@ class ObraController {
         } catch (error) {
             return res.status(500).json({ error: 'Erro ao buscar' });
         }
+    }
+
+    async delete(req, res) {
+        try {
+            const { id } = req.params;
+
+            // 1. Buscar a atividade para ver se ela existe
+            const obra = await Obra.findByPk(id);
+
+            if (!obra) {
+                return res.status(404).json({ error: 'Obra não encontrada.' });
+            }
+
+            // 2. Deletar o registro do banco de dados
+            await obra.destroy();
+
+            // 3. Retornar uma mensagem de sucesso (status 204 ou 200 com JSON)
+            return res.status(200).json({ message: 'Obra deletada com sucesso.' });
+
+        } catch (error) {
+            console.error("Erro ao deletar atividade:", error);
+            return res.status(500).json({ error: 'Não foi possível excluir a atividade.' });
+        }
+    }
+
+    async update(req, res){
+        try{
+
+            const{ id } = req.params;
+
+             const{
+                obra_nome,
+                obra_localizacao,
+                obra_data_inicio,
+                obra_data_fim,
+                obra_resp_obra,
+                obra_resp_cliente,
+                obra_status
+            } = req.body;
+
+            const obra = await Obra.findByPk(id);
+
+            if(!obra){
+                return res.status(404).json({ error: 'Obra não encontrada' });
+            }
+
+            await obra.update({
+                obra_nome,
+                obra_localizacao,
+                obra_data_inicio,
+                obra_data_fim,
+                obra_resp_obra,
+                obra_resp_cliente,
+                obra_status
+            });
+
+            return res.status(201).json(obra);
+        }catch (error){
+
+            console.error("Erro ao atualizar obra:", error);
+            return res.status(400).json({ 
+            error: 'Dados inválidos ou erro no servidor',
+            details: error.message 
+            });
+        }  
     }
 }
 

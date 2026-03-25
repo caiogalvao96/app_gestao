@@ -19,6 +19,16 @@ export const obraService = {
     getById: async (id) => {
     const res = await api.get(`/obra/${id}`);
     return res.data;
+  },  
+
+    delete: async (id) => {
+    const res = await api.delete(`/obra/${id}`);
+    return res.data;
+  },
+
+  update: async (id, data) => {
+    const res = await api.put(`/atividade/${id}`, data);
+    return res.data;
   },
 
 };

@@ -11,6 +11,9 @@ class AtividadeController {
                 ativ_data_fim,
                 ativ_status,
                 ativ_concluida, // Booleano: passar true ou false no JSON (sem aspas)
+                ativ_valor_unitario,
+                ativ_valor_total,
+                ativ_quantidade,
                 obra_id,
                 clas_id,
                 comp_id
@@ -23,6 +26,9 @@ class AtividadeController {
                 ativ_data_fim,
                 ativ_status,
                 ativ_concluida,
+                ativ_valor_unitario,
+                ativ_valor_total,
+                ativ_quantidade,
                 obra_id,
                 clas_id,
                 comp_id
@@ -85,6 +91,7 @@ class AtividadeController {
     async update(req, res) {
         try {
             const { id } = req.params; // O ID vem da rota (ex: /atividades/:id)
+
             const { 
 
                 ativ_descricao,
@@ -93,6 +100,9 @@ class AtividadeController {
                 ativ_data_fim,
                 ativ_status,
                 ativ_concluida,
+                ativ_valor_unitario,
+                ativ_valor_total,
+                ativ_quantidade,
                 obra_id,
                 clas_id,
                 comp_id
@@ -101,6 +111,8 @@ class AtividadeController {
 
             // 1. Verificar se a atividade existe
             const atividade = await Atividade.findByPk(id);
+
+            
 
             if (!atividade) {
                 return res.status(404).json({ error: 'Atividade não encontrada' });
@@ -114,6 +126,9 @@ class AtividadeController {
                 ativ_data_fim,
                 ativ_status,
                 ativ_concluida,
+                ativ_valor_unitario,
+                ativ_valor_total,
+                ativ_quantidade,
                 obra_id,
                 clas_id,
                 comp_id

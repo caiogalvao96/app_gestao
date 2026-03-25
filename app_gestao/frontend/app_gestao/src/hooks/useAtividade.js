@@ -51,6 +51,6 @@ export function useAtividade({ id = null, idProjeto = null } = {}){
         deleteAtividade: deleteMutation.mutate, 
 
         isSaving: createMutation.isPending || updateMutation.isPending,
-        isDeleting: deleteMutation.isPending
+        isDeleting: deleteMutation.isLoading || deleteMutation.isPending
     }
 }

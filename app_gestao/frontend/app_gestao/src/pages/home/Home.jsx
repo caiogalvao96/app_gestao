@@ -9,10 +9,11 @@ import Modal from '../../components/Modal'
 import Projeto from '../projeto/Projeto'
 
 import { useObra } from '../../hooks/useObra'
+import { RiTaskLine, RiEdit2Fill, RiDeleteBin6Line} from "react-icons/ri";
 
 const Home = () => {
 
-  const {obras} = useObra(null);
+  const {obras, deleteObra} = useObra(null);
 
   const [idSelecionado, setIdSelecionado] = useState(null);
 
@@ -23,6 +24,8 @@ const Home = () => {
   const[showModal, setShowModal] = useState(false)
 
   const[showProjeto, setShowProjeto] = useState(false)
+
+  const [obra, setObra] = useState(null);
   
   // Função para inverter o estado
   const toggleSidebar = () => setSidebar(!sidebar);
@@ -39,10 +42,23 @@ const Home = () => {
     setIdSelecionado(id);
   }
 
+  const edicao = (obra) => {
+    setObra(obra);
+    setShowModal(!showModal)
+  }
+
+  const excluirObra = (id) => {
+    const c = window.confirm("Deseja realmente excluir o orçamento?")
+
+    if(c && id){
+      deleteObra(id)
+      alert("Obra deletada!");
+    }
+  }
 
   return (
     <div className={styles.main}>
-        <Modal aberto={showModal} clicou={toggleModal}/>
+        {showModal &&(<Modal  clicou={toggleModal} obra={obra}/>)}
         <Navbar onMenuClick={toggleSidebar} isSidebarOpen={sidebar} showDetail={showDetail} clicou={toggleModal}/>
         <div className={styles.container}>
           { !showModal && <Sidebar isOpen={sidebar} setShowDetail={setShowDetail} onMenuClick={toggleSidebar}/>}
@@ -56,6 +72,8 @@ const Home = () => {
               <div key={obra.obra_id} className={styles.cardObra}>
                 <div className={styles.cardHeader}>
                   <h3>{obra.obra_nome}</h3>
+                  <button type='button' className={styles.btnAcao} onClick={()=> excluirObra(obra.obra_id)} ><RiDeleteBin6Line className={styles.svgTrash}/></button>
+                  <button type='button' className={styles.btnAcao} onClick={()=> edicao(obra) }><RiEdit2Fill className={styles.svgEdit}/></button>
                 </div>
                 
                 <div className={styles.cardBody}>

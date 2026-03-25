@@ -15,9 +15,8 @@ import { useComposicoes } from '../../../hooks/useComposicoes'
 
 const Atividade = ({ idProjeto}) => {
 
-const { atividades, isLoading, isError } = useAtividade({idProjeto});
-
-
+const { atividades, deleteAtividade,isLoading, isError, isDeleting } = useAtividade({idProjeto});
+const [idDeletando, setIdDeletando] = useState(null);
 
 
 
@@ -46,6 +45,17 @@ if(atividadeEdicao) return (
     <ModalAtividade idProjeto ={idProjeto}  dadosAtividade={atividadeEdicao} onClose={() => setAtvidadeEdicao(null)}/>
 )
 
+const excluir = async (id) => {
+    const resposta = window.confirm("Deseja realmente excluir esta atividade?");
+    if (resposta && id) {
+        setIdDeletando(id); // Marca qual item está sendo excluído
+        try {
+            await deleteAtividade(id);
+        } finally {
+            setIdDeletando(null); // Limpa após terminar
+        }
+    }
+};
 
 return (
         <div className={styles.acontainer}>
@@ -89,12 +99,20 @@ return (
                                     <p><strong>Data inicio:</strong> <span>{new Date(atv.ativ_data_inicio).toLocaleDateString('pt-BR')}</span></p>
                                     <p><strong>Data fim:</strong> <span>{new Date(atv.ativ_data_fim).toLocaleDateString('pt-BR')}</span></p>
                                     <p><strong>Status:</strong> <span>{atv.ativ_status}</span></p>
-                                    <p><strong>Observação</strong> <span>{atv.ativ_observacao}</span></p>
+                                    <p><strong>Quantidade</strong> <span>{atv.ativ_quantidade}</span></p>
+                                    <p><strong>Valor unitário</strong> <span>{atv.ativ_valor_unitario}</span></p>
+                                    <p><strong>Valor total</strong> <span>{atv.ativ_valor_total}</span></p>
                                 </div>
                             </div>
                             <div className={styles.opcoes}>
                                 <button onClick={() => setAtvidadeEdicao(atv)} className={styles.btnOpcao}> <RiEdit2Fill /> Editar</button>
-                                <button className={styles.btnExcluir}> <RiDeleteBin6Line /> Excluir</button>
+                                <button className={styles.btnExcluir} onClick={()=> excluir(atv.ativ_id)}> <RiDeleteBin6Line /> 
+                                {isDeleting && idDeletando === atv.ativ_id ? (
+                                    <>
+                                        Excluindo...
+                                    </>
+                                ):("Excluir")}
+                                </button>
                             </div>
                         </div>
                     ))}

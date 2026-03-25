@@ -92,6 +92,33 @@
     
 }
 
+.btnAcao{
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    transition: 0.6s;
+    width: 4vw;
+    height: 6vh;
+    border-radius: 50%;
+    margin-left: 1vw;
+}
+
+.btnAcao:hover{
+    background-color: rgb(229, 246, 252);
+
+}
+
+.svgTrash{
+    color: red;
+    width: 4vw;
+}
+
+.svgEdit{
+    color: blue;
+    width: 4vw;
+}
+
+
 @media screen and (max-width: 768px) {
   .gridObras {
     display: flex;

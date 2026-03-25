@@ -4,18 +4,17 @@
     width: 100%;
     height: 100%;
     z-index: 1009;
-
     display: flex;
     justify-content: center;
     align-items: center;
-}   
+}      
 
 .container{
     width: 35%;
     height: 85%;
-    background-color:  #1e1e1e;
+    background-color: whitesmoke;
     border-radius: 10px;
-    border: 1px solid grey;
+    border: 1px solid lightgrey;
     z-index: 1001;
 
     display: flex;
@@ -28,7 +27,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 3vh;
+  margin-top: 1vh;
   width: 100%;
   padding: 5px;
 }
@@ -45,10 +44,10 @@
 .groupInputs input{
     border-radius: 5px;
     background-color: transparent;
-    border: 1px solid gray;
+    border: 1px solid lightgray;
     font-size: medium;
     padding: 1px;
-    color: #fefefe;
+    color: #19172c;
 
 }
 
@@ -56,47 +55,50 @@
     background-color: transparent;
     border-radius: 5px;
     outline: none;
-    border: 1px solid yellow;
+    border: 1px solid #002290;
 }
 
 .mInput input{
     background-color: transparent;
     border-radius: 5px;
-    border: 1px solid gray;
+    border: 1px solid lightgray;
     outline: none;
     padding: 1px;
-    color: #fefefe;
+    color: #19172c;
 }
 
 .mInput input:focus{
     background-color: transparent;
     border-radius: 5px;
     outline: none;
-    border: 1px solid yellow;
+    border: 1px solid #002290;
 }
 
 .container button {
     
     margin-top: 3vh;
     border: none;
-    background-color: yellow;
+    border-radius: 3px;
+    background-color:#0e0eff;
     width: 45%;
     height: 5vh;
     font-family: sans-serif;
     font-weight: bold;
+    color: #fefefe;
     transition: 0.6s;
+    cursor: pointer;
+    transition: filter 0.2s ease, transform 0.1s ease;
 }
 
 .container button:hover{
-    margin-top: 3vh;
-    border: 1px solid yellow;
-    background-color: transparent;
-    width: 45%;
-    height: 5vh;
-    font-family: sans-serif;
-    font-weight: bold;
-    transition: 0.6s;
-    color: yellow;
+    filter: brightness(0.7);
+}
+
+.container button:active {
+    /* Escurece um pouco mais quando clica de fato */
+    filter: brightness(0.8);
+    /* Opcional: dá um leve efeito de "afundar" */
+    transform: scale(0.98);
 }
 
 .mInput{
@@ -109,15 +111,15 @@
 
 .container label{
     font-family: sans-serif;
-  
+    font-weight: bold;
     margin-bottom: 2vh;
-    color: #fefefe;
+    color: #0a081d;
 }
 
 .titulo h2 {
     font-family: sans-serif;
     margin-bottom: 3vh;
-    color: #fefefe;
+    color: #0a081d;
 }
 
 input {
@@ -125,7 +127,7 @@ input {
 }
 
 .groupInputs input[type="date"]{
-    color: gray!important;
+    color: #19172c!important;
     font-size: medium;
 }
 

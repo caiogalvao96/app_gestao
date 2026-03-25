@@ -8,17 +8,17 @@ import {useObra} from '../hooks/useObra'
 
 
 
-const Modal = ({aberto, clicou}) => {       
+const Modal = ({ clicou, obra = {}}) => {       
 
-const { saveObra, isSaving} = useObra();
+const { saveObra, upadateObra, isSaving} = useObra();
 
 const initialState = {
-    obra_nome: '',
-    obra_localizacao: '',
-    obra_resp_obra: '',
-    obra_resp_cliente: '',
-    obra_data_inicio: '',
-    obra_data_fim: ''
+    obra_nome: obra?.obra_nome || '',
+    obra_localizacao: obra?.obra_localizacao || '',
+    obra_resp_obra: obra?.obra_resp_obra || '',
+    obra_resp_cliente: obra?.obra_resp_cliente || '',
+    obra_data_inicio: obra?.obra_data_inicio || '',
+    obra_data_fim: obra?.obra_data_fim || ''
   };
 
   const [formData, setFormData] = useState(initialState)
@@ -30,6 +30,8 @@ const initialState = {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    
     saveObra(formData, {
       onSuccess: () => {
         setFormData(initialState);
@@ -40,18 +42,15 @@ const initialState = {
     });
   };
 
-
-    
-    if(!aberto) return null;
     return (
     <div className={styles.modal}>
         <form onSubmit={handleSubmit} className={styles.modal}>
             <div className={styles.container}>
                 <div className={styles.titulo}>
-                    <h2>Novo projeto</h2>
+                    <h2>📋Novo orçamento</h2>
                 </div>
                 <div className={styles.mInput}>
-                    <label>Nome do projeto</label>
+                    <label>Nome do projeto </label>
                     <input 
                     type="text" 
                     placeholder='Ex: 1293_SUZ_JAC_ANEL DE FIBRA' 
@@ -127,10 +126,10 @@ const initialState = {
                     </div>
                 </div>
                 <div className={styles.groupBtn}>
-                    <button onClick={clicou}>Fechar</button>
-                    <button type="submit" disabled={isSaving}>
+                     <button type="submit" disabled={isSaving}>
                         {isSaving ? 'Salvando...' : 'Salvar Obra'}
                     </button>
+                    <button type='button' onClick={clicou}>Fechar</button>
                 </div>
             </div>
         </form>

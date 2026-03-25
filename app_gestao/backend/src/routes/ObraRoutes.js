@@ -9,4 +9,8 @@ routes.get('/', ObraController.index);
 
 routes.get('/:id', ObraController.show);
 
+routes.delete('/:id', ObraController.delete);
+
+routes.put('/:id', ObraController.update);
+
 export default routes;

@@ -1,7 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { obraService } from '../services/obraService'
 
-export function useObra (id = null){
+export function useObra ( id = null ){
      const queryClient = useQueryClient();
 
      const obrasQuery = useQuery({
@@ -25,6 +25,20 @@ export function useObra (id = null){
           enabled: !!id, // Só executa se o ID existir
         });
 
+      const deleteMutation = useMutation({
+        mutationFn: (id) => obraService.delete(id),
+        onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ['obras'] });
+        },
+      });
+
+      const updateMutation = useMutation({
+        mutationFn: ({ id, data }) => obraService.update(id, data),
+        onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ['obras'] })
+        },
+      });
+
        return{
 
         obras: obrasQuery.data ?? [],
@@ -32,6 +46,9 @@ export function useObra (id = null){
         isError: obrasQuery.isError || obraByIdQuery.isError,
 
         obra: obraByIdQuery.data,
+
+        deleteObra: deleteMutation.mutate,
+        upadateObra: updateMutation.mutate,
 
         saveObra: createMutation.mutate,
         isSaving: createMutation.isPending

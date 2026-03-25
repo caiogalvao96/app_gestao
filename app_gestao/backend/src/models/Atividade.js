@@ -33,6 +33,11 @@ const Atividade = sequelize.define('atividade', {
     ativ_concluida: {
         type: DataTypes.BOOLEAN
     },
+    ativ_quantidade: {
+    type: DataTypes.DECIMAL(10, 2),
+    allowNull: false,
+    defaultValue: 0
+    },
     ativ_valor_unitario: {
         type: DataTypes.DECIMAL(12, 2),
         allowNull: false,

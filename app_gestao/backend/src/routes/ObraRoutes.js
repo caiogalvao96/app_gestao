@@ -13,4 +13,6 @@ routes.delete('/:id', ObraController.delete);
 
 routes.put('/:id', ObraController.update);
 
+routes.patch('/:id/calcular-custo', ObraController.calcularCusto);
+
 export default routes;

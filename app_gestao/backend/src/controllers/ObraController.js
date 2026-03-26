@@ -127,6 +127,46 @@ class ObraController {
             });
         }  
     }
+
+    // Exemplo de lógica no seu controller de Back-end
+    async calcularCusto(req, res) {
+        const { id } = req.params;
+
+        try {
+            // 1. Soma a coluna 'ativ_valor_total' de todas as atividades vinculadas
+            // O Sequelize retorna null se não houver registros, por isso o || 0
+            const totalCusto = await Atividade.sum('ativ_valor_total', {
+                where: { obra_id: id }
+            });
+
+            // 2. Atualiza o campo 'custo_obra' na tabela Obra
+            // Verifique se na sua tabela Obra a PK é 'id' ou 'obra_id'
+            const [updatedRows] = await Obra.update(
+                { custo_obra: totalCusto || 0 }, 
+                { where: { obra_id: id } } 
+            );
+
+            if (updatedRows === 0) {
+                console.warn("Nenhuma obra foi atualizada. O ID existe no banco?");
+            }
+
+            return res.status(200).json({ 
+                success: true, 
+                novoTotal: totalCusto || 0 
+            });
+
+        } catch (error) {
+            // ESSA LINHA É A MAIS IMPORTANTE AGORA:
+            // Ela vai cuspir o erro real no seu terminal (node)
+            console.error("--- ERRO NO SEQUELIZE ---");
+            console.error(error); 
+            
+            return res.status(500).json({ 
+                error: "Erro interno ao calcular custo",
+                details: error.message 
+            });
+        }
+    }
 }
 
 export default new ObraController();

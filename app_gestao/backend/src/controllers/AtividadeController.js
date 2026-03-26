@@ -14,6 +14,8 @@ class AtividadeController {
                 ativ_valor_unitario,
                 ativ_valor_total,
                 ativ_quantidade,
+                ativ_bdi,
+                ativ_valor_venda,
                 obra_id,
                 clas_id,
                 comp_id
@@ -29,6 +31,8 @@ class AtividadeController {
                 ativ_valor_unitario,
                 ativ_valor_total,
                 ativ_quantidade,
+                ativ_bdi,
+                ativ_valor_venda,
                 obra_id,
                 clas_id,
                 comp_id
@@ -103,6 +107,8 @@ class AtividadeController {
                 ativ_valor_unitario,
                 ativ_valor_total,
                 ativ_quantidade,
+                ativ_bdi,
+                ativ_valor_venda,
                 obra_id,
                 clas_id,
                 comp_id
@@ -129,6 +135,8 @@ class AtividadeController {
                 ativ_valor_unitario,
                 ativ_valor_total,
                 ativ_quantidade,
+                ativ_bdi,
+                ativ_valor_venda,
                 obra_id,
                 clas_id,
                 comp_id

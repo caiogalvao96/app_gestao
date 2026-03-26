@@ -18,10 +18,6 @@ const Navbar = ({ onMenuClick, isSidebarOpen, showDetail, clicou}) => {
           <div className={styles.cDetalhe}>
             <RiBuilding2Line className={styles.nIcon}/>
             <span>{showDetail}</span>
-            <button onClick={clicou}>
-              <TiPlus/>
-               Nova obra
-            </button>
           </div>
         );
         case 'Dashboard':
@@ -36,10 +32,6 @@ const Navbar = ({ onMenuClick, isSidebarOpen, showDetail, clicou}) => {
           <div className={styles.cDetalhe}>
             <RiBuilding2Line className={styles.nIcon}/>
             <span>Projetos</span>
-            <button onClick={clicou}>
-              <TiPlus/>
-               Nova obra
-            </button>
           </div>
         );
       }

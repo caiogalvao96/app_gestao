@@ -27,8 +27,17 @@ export const obraService = {
   },
 
   update: async (id, data) => {
-    const res = await api.put(`/atividade/${id}`, data);
+    const res = await api.put(`/obra/${id}`, data);
     return res.data;
   },
+  // obraService.js
+  calcularCustoObra: async (id) => {
+    try {
+        const response = await api.patch(`/obra/${id}/calcular-custo`);
+        return response.data;
+    } catch (error) {
+        throw error; // Lança para o hook tratar
+    }
+  } 
 
 };

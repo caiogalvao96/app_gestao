@@ -3,7 +3,7 @@
     padding: 5px;
     background-color: transparent;
     height: 96%;
-
+    
     box-sizing: border-box;
     
 }
@@ -44,7 +44,7 @@
 
 .listaAtividade{
     width: 99,7%;
-    height: 73%;
+    height: 67%;
     overflow-y: auto;
     margin-top: 1vh;
     box-sizing: border-box;

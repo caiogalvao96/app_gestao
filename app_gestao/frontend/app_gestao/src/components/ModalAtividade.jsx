@@ -26,6 +26,8 @@ const initialState = {
     ativ_valor_unitario: dadosAtividade?.ativ_valor_unitario || 0,
     ativ_valor_total: dadosAtividade?.ativ_valor_total || 0,
     ativ_quantidade: Number(dadosAtividade?.ativ_quantidade) > 0 ? Number(dadosAtividade?.ativ_quantidade) : 1,
+    ativ_bdi: Number(dadosAtividade?.ativ_bdi) > 0 ? Number(dadosAtividade?.ativ_bdi) : 1,
+    ativ_valor_venda: Number(ativ_valor_venda) || 0,
     obra_id: idProjeto,
     clas_id: null,
     comp_id: dadosAtividade?.comp_id || ""
@@ -52,7 +54,11 @@ const initialState = {
         const qtd = Number(novoEstado.ativ_quantidade) || 0;
         const valorUnit = Number(novoEstado.ativ_valor_unitario) || 0;
 
+        
+
         novoEstado.ativ_valor_total = Number( qtd * valorUnit );
+
+        novoEstado.ativ_valor_venda = Number(novoEstado.ativ_id) * Number(novoEstado.ativ_valor_total);
 
             return novoEstado;
     });
@@ -76,7 +82,7 @@ const initialState = {
                 alert("Atividade atualizada com sucesso!");
             }
         })
-            console.log('Esse é o formdata',formData);
+            
     }else{
          storeAtividade(payload, {
          onSuccess: () => {
@@ -97,7 +103,7 @@ const initialState = {
 
    
   return (
-    <div className={styles.modal}>
+    <div className={styles.modal}> 
         <form onSubmit={handleSubmit} className={styles.modal}>
             <div className={styles.container}>
                 <div className={styles.titulo}>  

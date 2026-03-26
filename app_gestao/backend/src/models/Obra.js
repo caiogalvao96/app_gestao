@@ -33,6 +33,9 @@ const Obra = sequelize.define('obra', {
     obra_status: {
         type: DataTypes.ENUM('Orçamento', 'Execução', 'Pausado', 'Concluído'),
         defaultValue: 'Orçamento'
+    },
+    custo_obra: {
+        type: DataTypes.DECIMAL(10, 2)
     }
 
 

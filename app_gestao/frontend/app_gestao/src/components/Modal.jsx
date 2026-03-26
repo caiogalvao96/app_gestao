@@ -13,6 +13,7 @@ const Modal = ({ clicou, obra = {}}) => {
 const { saveObra, upadateObra, isSaving} = useObra();
 
 const initialState = {
+    obra_id: obra?.obra_id || '',
     obra_nome: obra?.obra_nome || '',
     obra_localizacao: obra?.obra_localizacao || '',
     obra_resp_obra: obra?.obra_resp_obra || '',
@@ -31,15 +32,24 @@ const initialState = {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if(formData.obra_id){
+            upadateObra({ id: formData.obra_id, data: formData }, {
+                    onSuccess: () => {
+                    setFormData(initialState);
+                    alert("Obra atualizada com sucesso!");
+                }
+            })
+    }else{
+            saveObra(formData, {
+                onSuccess: () => {
+                setFormData(initialState);
+                alert("Obra salva com sucesso!");
+                clicou();
+                // Limpar formulário ou fechar modal aqui
+            }
+        });
+    }
     
-    saveObra(formData, {
-      onSuccess: () => {
-        setFormData(initialState);
-        alert("Obra salva com sucesso!");
-        clicou();
-        // Limpar formulário ou fechar modal aqui
-      }
-    });
   };
 
     return (

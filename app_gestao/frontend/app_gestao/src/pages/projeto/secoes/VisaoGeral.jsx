@@ -5,11 +5,11 @@ import { RiCalendar2Line, RiBuilding2Line, RiMapPin2Line, RiUserFollowLine } fro
 import styles from './VisaoGeral.module.css'
 
 import { useObra} from '../../../hooks/useObra'
-
+   
 
 const VisaoGeral = ({ idProjeto }) => {
 
-const { isSaving, obra} = useObra(idProjeto);
+const { isSaving, obra, recalcularCusto, isCalculando} = useObra(idProjeto);
 
 const aObra = Array.isArray(obra) ? obra[0] : obra;
 
@@ -20,6 +20,12 @@ const formatarDataBR = (dataIso) => {
   const [ano, mes, dia] = dataIso.split("-");
   return `${dia}/${mes}/${ano}`;
 };
+
+const handleCalcular = () => {
+  // Dispara a mutation passando o id da obra
+  recalcularCusto(idProjeto);
+};
+
 
 if (!aObra) {
     return (
@@ -88,8 +94,20 @@ if (!aObra) {
                     </div>
                     <span> {aObra.obra_resp_cliente}  </span>
                 </div>
+                <div className={styles.conteudo}>
+                    <div className={styles.lTitulo}>
+                        <RiUserFollowLine  />
+                        <span className={styles.sNegrito}>
+                            Valor de custo:
+                        </span>
+                    </div>
+                    <span> R$ {aObra.custo_obra}  </span>
+                </div>
                 </div>
             </div>
+            <button onClick={handleCalcular} disabled={isCalculando}>
+                {isCalculando ? "Somando atividades..." : "Calcular Custo Total"}
+            </button>
         </div>
     </div>
   )

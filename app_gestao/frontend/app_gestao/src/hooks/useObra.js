@@ -39,6 +39,20 @@ export function useObra ( id = null ){
         },
       });
 
+    const calcularCustoMutation = useMutation({
+      mutationFn: (obraId) => obraService.calcularCustoObra(obraId),
+      onSuccess: (data, obraId) => {
+        // 1. Invalida a lista geral para atualizar o card na Home
+        queryClient.invalidateQueries({ queryKey: ['obras'] });
+        
+        // 2. Invalida a obra específica se estivermos na tela de detalhes dela
+        queryClient.invalidateQueries({ queryKey: ['obras', obraId] });
+        
+        console.log("Custo recalculado com sucesso!");
+      },
+    });
+      
+
        return{
 
         obras: obrasQuery.data ?? [],
@@ -49,6 +63,10 @@ export function useObra ( id = null ){
 
         deleteObra: deleteMutation.mutate,
         upadateObra: updateMutation.mutate,
+
+        // Nova função exposta
+        recalcularCusto: calcularCustoMutation.mutate,
+        isCalculando: calcularCustoMutation.isPending,
 
         saveObra: createMutation.mutate,
         isSaving: createMutation.isPending

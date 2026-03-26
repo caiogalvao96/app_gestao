@@ -48,6 +48,14 @@ const Atividade = sequelize.define('atividade', {
         allowNull: false,
         defaultValue: 0
     },
+    ativ_bdi: {
+        type: DataTypes.DECIMAL(10, 2),
+        defaultValue: 1
+    },
+    ativ_valor_venda: {
+        type: DataTypes.DECIMAL(10, 2),
+        defaultValue: 0
+    },
     // Chaves Estrangeiras (FKs) que conectam tudo
     obra_id: {
         type: DataTypes.INTEGER,

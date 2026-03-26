@@ -31,31 +31,35 @@ const Projeto = ({ projeto, id }) => {
     }
   }
 
+  const [ativo, setAtivo] = useState(1);
+
+  const selecao = (opcao) => {
+    setOpcao(opcao);
+    setAtivo(opcao);
+  }
+
+
+
   return (
 
-    
-
     <div className={styles.main}>
-
-    
-
       <div className={styles.container}>
         <div className={styles.nav}>
           <ul className={styles.lista}>  
             <li>
-              <button onClick={() => setOpcao(1)} className={styles.btnProjeto}> <RiDashboardLine/> Visão geral</button>
+              <button onClick={() => selecao(1)} className={ativo != 1 ? styles.btnProjeto : styles.ativo}> <RiDashboardLine className={ativo === 1 ? styles.svgAtivo : '' }/> Visão geral</button>
             </li>
             <li>
-              <button onClick={() => setOpcao(2)} className={styles.btnProjeto}> <RiListCheck2/> Atividades</button>
+              <button onClick={() => selecao(2)} className={ativo != 2 ? styles.btnProjeto : styles.ativo}> <RiListCheck2 className={ativo === 2 ? styles.svgAtivo : '' }/> Atividades</button>
             </li>
             <li>
-              <button onClick={() => setOpcao(3)} className={styles.btnProjeto}> <RiStackLine/>Composições</button>
+              <button onClick={() => selecao(3)} className={ativo != 3 ? styles.btnProjeto : styles.ativo}> <RiStackLine className={ativo === 3 ? styles.svgAtivo : '' }/>Composições</button>
             </li>
             <li>
-              <button onClick={() => setOpcao(4)} className={styles.btnProjeto}> <RiHammerLine/>Insumos</button>
+              <button onClick={() => selecao(4)} className={ativo != 4 ? styles.btnProjeto : styles.ativo}> <RiHammerLine className={ativo === 4 ? styles.svgAtivo : '' }/>Insumos</button>
             </li>
             <li>
-              <button onClick={projeto} className={styles.btnProjeto}> <RiCloseFill /> Sair</button>
+              <button onClick={projeto} className={ativo ? styles.btnProjeto : styles.ativo}> <RiCloseFill /> Sair</button>
             </li>
           </ul>
         </div>

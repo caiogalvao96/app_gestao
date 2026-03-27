@@ -139,11 +139,19 @@ class ObraController {
                 where: { obra_id: id }
             });
 
+            const totalVenda = await Atividade.sum('ativ_valor_venda', {
+                where: { obra_id: id }
+            });
+
+          
+
             // 2. Atualiza o campo 'custo_obra' na tabela Obra
             // Verifique se na sua tabela Obra a PK é 'id' ou 'obra_id'
             const [updatedRows] = await Obra.update(
-                { custo_obra: totalCusto || 0 }, 
-                { where: { obra_id: id } } 
+                { custo_obra: totalCusto || 0,
+                  obra_valor_venda: totalVenda || 0  
+                }, 
+                { where: { obra_id: id } }   
             );
 
             if (updatedRows === 0) {

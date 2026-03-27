@@ -100,8 +100,10 @@ return (
                                     <p><strong>Data fim:</strong> <span>{new Date(atv.ativ_data_fim).toLocaleDateString('pt-BR')}</span></p>
                                     <p><strong>Status:</strong> <span>{atv.ativ_status}</span></p>
                                     <p><strong>Quantidade</strong> <span>{atv.ativ_quantidade}</span></p>
-                                    <p><strong>Valor unitário</strong> <span>{atv.ativ_valor_unitario}</span></p>
-                                    <p><strong>Valor total</strong> <span>{atv.ativ_valor_total}</span></p>
+                                    <p><strong>Custo unitário</strong> <span>{atv.ativ_valor_unitario}</span></p>
+                                    <p><strong>Custo total</strong> <span>{atv.ativ_valor_total}</span></p>
+                                    <p><strong>BDI</strong> <span>{String(atv.ativ_bdi).replace('.',',')}</span></p>
+                                    <p><strong>Valor de venda</strong> <span>{atv.ativ_valor_venda}</span></p>
                                 </div>
                             </div>
                             <div className={styles.opcoes}>

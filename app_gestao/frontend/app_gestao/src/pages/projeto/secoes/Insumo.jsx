@@ -28,6 +28,7 @@ const handleCloseModal = () => {
     setInsumoParaEditar(null);
 };
 
+    //https://gennariaraujo147911.rm.cloudtotvs.com.br:8051/api/est/v2/Products?%24filter=startswith(Description%2C%20%27parafuso%20sextavado%27)&fields=Description&pageSize=10
   return (
     <div className={styles.main}>
         {(novoInsumo || insumoParaEditar) && <ModalInsumo id={idProjeto} onClose={handleCloseModal} insumoExistente={insumoParaEditar}/>}

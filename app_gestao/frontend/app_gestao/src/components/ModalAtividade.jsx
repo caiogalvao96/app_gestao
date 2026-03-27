@@ -27,7 +27,7 @@ const initialState = {
     ativ_valor_total: dadosAtividade?.ativ_valor_total || 0,
     ativ_quantidade: Number(dadosAtividade?.ativ_quantidade) > 0 ? Number(dadosAtividade?.ativ_quantidade) : 1,
     ativ_bdi: Number(dadosAtividade?.ativ_bdi) > 0 ? Number(dadosAtividade?.ativ_bdi) : 1,
-    ativ_valor_venda: Number(ativ_valor_venda) || 0,
+    ativ_valor_venda: Number(dadosAtividade?.ativ_valor_venda) || 0,
     obra_id: idProjeto,
     clas_id: null,
     comp_id: dadosAtividade?.comp_id || ""
@@ -36,7 +36,7 @@ const initialState = {
   const [formData, setFormData] = useState(initialState)
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    let { name, value } = e.target;
     setFormData((prev) => {
         const novoEstado = { ...prev, [name]: value }
 
@@ -51,14 +51,21 @@ const initialState = {
                 : 0;
         }
 
+        if (name === 'ativ_bdi') {
+            value = value.replace(',', '.');
+        }
+
         const qtd = Number(novoEstado.ativ_quantidade) || 0;
         const valorUnit = Number(novoEstado.ativ_valor_unitario) || 0;
 
         
 
         novoEstado.ativ_valor_total = Number( qtd * valorUnit );
+       
+        const bdi= Number(novoEstado.ativ_bdi);
+        const total= Number(novoEstado.ativ_valor_total);
 
-        novoEstado.ativ_valor_venda = Number(novoEstado.ativ_id) * Number(novoEstado.ativ_valor_total);
+        novoEstado.ativ_valor_venda = Number(total * bdi);
 
             return novoEstado;
     });
@@ -72,6 +79,7 @@ const initialState = {
         comp_id: formData.comp_id === "" ? null : Number(formData.comp_id),
         ativ_quantidade: Number(formData.ativ_quantidade) || 1,
         ativ_valor_unitario: Number(formData.ativ_valor_unitario) || 0,
+        ativ_valor_venda: Number(formData.ativ_valor_venda) || 0,
         obra_id: Number(idProjeto)
     };
 
@@ -194,6 +202,16 @@ const initialState = {
                         name='ativ_quantidade'
                         value={formData.ativ_quantidade}
                         onChange={handleChange}
+                        />
+                    </div>
+                    <div className={styles.groupInputs}>
+                        <label>BDI</label>
+                        <input 
+                        type="text" 
+                        name='ativ_bdi'
+                        value={String(formData.ativ_bdi).replace('.', ',')}
+                        onChange={handleChange}
+                        placeholder='1,5'
                         />
                     </div>
                 </div>

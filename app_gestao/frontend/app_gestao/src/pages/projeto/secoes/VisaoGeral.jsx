@@ -1,7 +1,8 @@
 import React from 'react'
 
 import { RiCalendar2Line, RiBuilding2Line, RiMapPin2Line, RiUserFollowLine } from "react-icons/ri"
-
+import { PiMoneyWavy } from "react-icons/pi";
+import { FcCalculator } from "react-icons/fc";
 import styles from './VisaoGeral.module.css'
 
 import { useObra} from '../../../hooks/useObra'
@@ -74,6 +75,11 @@ if (!aObra) {
                     </div>
                     <span> {formatarDataBR(aObra["obra_data_fim"])}</span>
                 </div>
+                <div className={styles.conteudo}>
+                    <button onClick={handleCalcular} disabled={isCalculando}>
+                        {isCalculando ? "Somando atividades..." : <span className={styles.btncontent}><FcCalculator /> Calcular</span>}
+                    </button>
+                </div>
                 </div>
                 <div className={styles.dDireita}>
                       <div className={styles.conteudo}>
@@ -96,18 +102,25 @@ if (!aObra) {
                 </div>
                 <div className={styles.conteudo}>
                     <div className={styles.lTitulo}>
-                        <RiUserFollowLine  />
+                        <PiMoneyWavy />
                         <span className={styles.sNegrito}>
-                            Valor de custo:
+                            Custo da obra:
                         </span>
                     </div>
-                    <span> R$ {aObra.custo_obra}  </span>
+                    <span className={styles.custo}> R$ {aObra.custo_obra}  </span>
                 </div>
+                <div className={styles.conteudo}>
+                    <div className={styles.lTitulo}>
+                        <PiMoneyWavy />
+                        <span className={styles.sNegrito}>
+                            Valor de venda:
+                        </span>
+                    </div>
+                    <span className={styles.venda}> R$ {aObra.obra_valor_venda}  </span>
                 </div>
             </div>
-            <button onClick={handleCalcular} disabled={isCalculando}>
-                {isCalculando ? "Somando atividades..." : "Calcular Custo Total"}
-            </button>
+        </div>
+            
         </div>
     </div>
   )

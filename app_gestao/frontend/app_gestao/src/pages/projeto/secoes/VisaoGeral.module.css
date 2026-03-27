@@ -86,3 +86,53 @@
 .conteudo span{
     color:  #333232;
 }
+
+.conteudo button {
+    border: none;
+    cursor: pointer;
+    background-color: blue; /* Um azul mais padrão, se preferir */
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    padding: 5px 10px;
+    transition: background 0.2s;
+    min-width: 140px; /* Garante que o botão não mude de tamanho ao carregar */
+}
+
+
+.conteudo button:hover {
+    background-color:  darkblue;
+}
+
+.conteudo button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* O segredo do alinhamento está aqui */
+.conteudo button .btncontent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px; /* Espaço exato entre o ícone e o texto */
+    width: 100%; /* Ocupa o botão todo para centralizar */
+    background-color: transparent; /* Remova o yellow para o visual final */
+    color: white;
+}
+
+.conteudo button svg {
+    width: 20px;
+    height: 20px;
+}
+
+.custo{
+    font-weight: bold;
+    color: blue!important;
+}
+
+.venda{
+    font-weight: bold;
+    color: green!important;
+}

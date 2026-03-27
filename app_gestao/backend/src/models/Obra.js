@@ -35,7 +35,12 @@ const Obra = sequelize.define('obra', {
         defaultValue: 'Orçamento'
     },
     custo_obra: {
-        type: DataTypes.DECIMAL(10, 2)
+        type: DataTypes.DECIMAL(10, 2) 
+    },
+    obra_valor_venda: {
+        type: DataTypes.DECIMAL(10, 2),
+        allowNull: false,
+        defaultValue: 0
     }
 
 

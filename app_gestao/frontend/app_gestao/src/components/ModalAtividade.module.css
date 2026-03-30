@@ -18,7 +18,7 @@
     height: 95%;
     background-color:  transparent;
     border-radius: 10px;
-    border: 1px solid #1e1e1e;
+  
   
 
     display: flex;
@@ -68,7 +68,7 @@
     background-color: transparent;
     border-radius: 5px;
     outline: none;
-    border: 1px solid yellow;
+    border: 1px solid blue;
 }
 
 .mInput input{
@@ -89,7 +89,7 @@
     background-color: transparent;
     border-radius: 5px;
     outline: none;
-    border: 1px solid yellow;
+    border: 1px solid blue;
 }
 
 .aButton {
@@ -97,17 +97,18 @@
     margin-top: 2vh;
     margin-bottom: 1vh;
     border: none;
-    background-color: yellow;
+    background-color: blue;
     width: 25%;
     height: 5vh;
     font-family: sans-serif;
     font-weight: bold;
     transition: 0.6s;
     cursor: pointer;
+    color: white;
 }
 
 .aButton:hover{
-    border: 1px solid #1e1e1e;
+    border: 1px solid blue;
 }
 
 .mInput{
@@ -150,7 +151,15 @@ input {
 
 .nativeSelect {
     background-color: transparent;
-    border: 1px solid gray;
+    border: 1px solid darkgray!important;
+    border-radius: 5px!important;
+    width: 250px;
+    height: 23px;
+    outline: none!important;
+}
+
+.nativeSelect:focus {
+   border: 1px solid blue!important;
 }
 
 .nativeSelect option {

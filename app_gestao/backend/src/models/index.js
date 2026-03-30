@@ -6,6 +6,8 @@ import Composicao from './Composicao.js';
 import Insumo from './Insumo.js';
 import ItemComposicao from './ItemComposicao.js';
 import Unidade from './Unidade.js'
+import Produto from './Produto.js';
+import Categoria from './Categoria.js'
 
 // Aqui é o lugar sagrado das associações!
 // Fazemos aqui porque ambos os models já foram carregados.
@@ -39,6 +41,11 @@ Insumo.belongsTo(Obra, { foreignKey: 'obra_id', as: 'obra'})
 Insumo.belongsTo(Unidade, { foreignKey: 'und_id', as: 'unidade' });
 Unidade.hasMany(Insumo, { foreignKey: 'und_id', as: 'insumo' });
 
+//Relacionamento Produto -> unidade de medidida
+Produto.belongsTo(Unidade, { foreignKey: 'und_id', as: 'unidade' });
+Unidade.hasMany(Produto, { foreignKey: 'und_id', as: 'produto' });
+
+
 // O CORAÇÃO: COMPOSIÇÃO E SEUS ITENS ---
 
 // 1. A Composição "Pai" possui vários itens nela
@@ -71,8 +78,12 @@ Composicao.belongsTo(Obra, {
     as: 'obra_dona' 
 });
 
+// Relacionamento Categoria -> Atividade
+Categoria.hasMany(Atividade, { foreignKey: 'cat_id' });
+Atividade.belongsTo(Categoria, { foreignKey: 'cat_id' });
 
-export { sequelize, Obra, Atividade, ClassificacaoArea, Composicao, Insumo, ItemComposicao, Unidade };
+
+export { sequelize, Obra, Atividade, ClassificacaoArea, Composicao, Insumo, ItemComposicao, Unidade, Produto, Categoria };
 
 
 

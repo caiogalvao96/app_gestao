@@ -22,7 +22,7 @@
     flex-direction: column;
 }
 
-.group label {
+.linha label {
     font-family: sans-serif;
     font-size: small;
     color: darkslategray;
@@ -35,6 +35,19 @@
     font-size: small;
     height: 4vh;
     outline: none;
+}
+
+.iDescricao{
+     border: 1px solid lightgray;
+    border-radius: 5px;
+    font-size: small;
+    height: 4vh;
+    outline: none;
+}
+
+.iDescricao:focus{
+    border: 1px solid #00BFFF;
+
 }
 
 .group input:focus {
@@ -86,4 +99,47 @@
 
 .group select:focus{
     border: 1px solid #00BFFF;
+}
+
+.suggestionList {
+    position: absolute;
+    top: 100%; /* Fixa logo abaixo do input */
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    z-index: 1000; /* Garante que fique acima de tudo */
+    
+    /* CONFIGURAÇÃO DE ROLAGEM */
+    max-height: 200px; /* Defina o tamanho máximo que achar melhor */
+    overflow-y: auto;  /* Habilita a rolagem vertical quando necessário */
+    
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.itemSuggestion {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+.itemSuggestion:hover {
+    background-color: #f0f7ff;
+}
+
+.itemSuggestion strong {
+    font-size: 14px;
+    text-transform: uppercase;
+    font-family: sans-serif;
+}
+
+.itemSuggestion small {
+    font-size: 11px;
+    color: #666;
 }

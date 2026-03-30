@@ -1,53 +1,52 @@
-import React, {useState} from 'react'
-import styles from './ModalInsumo.module.css'
-import { useUnidade} from '../hooks/useUnidade'
-import { useInsumo } from '../hooks/useInsumo'
+import React, { useState } from 'react';
+import styles from './ModalInsumo.module.css';
+import { useUnidade } from '../hooks/useUnidade';
+import { useInsumo } from '../hooks/useInsumo';
+import { useProducts } from '../hooks/useProducts'; 
 import { NumericFormat } from 'react-number-format';
 
 const ModalInsumo = ({ id, onClose, insumoExistente }) => {
-
     const [mensagemSucesso, setMensagemSucesso] = useState(false);
+    const [showSuggestions, setShowSuggestions] = useState(false);
 
-    // Para o NumericFormat
-const handlePriceChange = (values) => {
-    const { value } = values;
-    setFormData(prev => ({ ...prev, ins_preco: value }));
-};
+    const { unidades = [] } = useUnidade();
+    const { storeInsumo, updateInsumo, isSaving } = useInsumo();
 
-  const {unidades, isError, isLoading } = useUnidade();
-
-  const {storeInsumo, isSaving, onSuccess} = useInsumo();
-
-  // Estado inicial condicional
     const initialState = {
         ism_descricao: insumoExistente?.ism_descricao || '',
         ism_preco: insumoExistente?.ism_preco || '',
-        und_id: insumoExistente?.unidade?.und_id || '', // Verifique se o ID da unidade vem assim
+        und_id: insumoExistente?.unidade?.und_id || '',
     };
-    
-    const [formData, setFormData] = useState(initialState)
+    const [formData, setFormData] = useState(initialState);
+
+    // Busca no RM
+    const { data: sugestoesRM, isLoading: isLoadingRM } = useProducts(formData.ism_descricao);
 
     const handleChange = (e) => {
-            const { name, value } = e.target;
-            setFormData(prev => ({ ...prev, [name]: value }));
-        };
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+        if (name === 'ism_descricao') setShowSuggestions(true);
+    };
 
-        const handleSubmit = (e) => {
+    const handleSelectRM = (item) => {
+        // Lendo do JSON (minúsculo conforme seu print anterior)
+        const desc = item.description;
+        const undRM = item.unitMeasure;
+
+        const unidadeLocal = unidades.find(
+            u => u.und_codigo?.toUpperCase() === undRM?.toUpperCase()
+        );
+
+        setFormData(prev => ({
+            ...prev,
+            ism_descricao: desc,
+            und_id: unidadeLocal ? unidadeLocal.und_id : prev.und_id
+        }));
+        setShowSuggestions(false);
+    };
+
+    const handleSubmit = (e) => {
         e.preventDefault();
-        e.stopPropagation();
-
-        // --- AS TRAVAS (Validações) ---
-        if (!formData.und_id || formData.und_id === "") {
-            alert("Por favor, selecione uma unidade de medida!");
-            return; 
-        }
-
-        if (!formData.ism_descricao || formData.ism_descricao.trim() === "") {
-            alert("A descrição do insumo é obrigatória!");
-            return;
-        }
-
-        // --- PREPARAÇÃO DO PAYLOAD ---
         const payload = {
             ism_descricao: formData.ism_descricao,
             ism_preco: parseFloat(formData.ism_preco) || 0,
@@ -55,116 +54,97 @@ const handlePriceChange = (values) => {
             obra_id: parseInt(id, 10)
         };
 
-        // --- LÓGICA DE DECISÃO: UPDATE OU STORE ---
-        if (insumoExistente?.ism_id) {
-            // Se temos um ID, chamamos o UPDATE
-            updateInsumo(
-                { id: insumoExistente.ism_id, data: payload }, 
-                {
-                    onSuccess: () => {
-                        alert("Insumo atualizado com sucesso!");
-                        onClose(); // Na edição, fechamos o modal para ver a lista atualizada
-                    },
-                    onError: (err) => {
-                        alert("Erro ao atualizar insumo.");
-                        console.error(err);
-                    }
-                }
-            );
-        } else {
-            // Se NÃO temos ID, seguimos com o STORE original
-            storeInsumo(payload, {
-                onSuccess: () => {
-                    setFormData(initialState);
-                    setMensagemSucesso(true);
-                    setTimeout(() => setMensagemSucesso(false), 3000);
-                },
-                onError: (err) => {
-                    alert("Erro ao cadastrar insumo.");
-                    console.error(err);
-                }
-            });
-        }
+        const callback = {
+            onSuccess: () => {
+                if (!insumoExistente) setFormData(initialState);
+                setMensagemSucesso(true);
+                setTimeout(() => setMensagemSucesso(false), 3000);
+            }
+        };
+
+        insumoExistente?.ism_id 
+            ? updateInsumo({ id: insumoExistente.ism_id, data: payload }, callback)
+            : storeInsumo(payload, callback);
     };
 
-  return (
-    <form onSubmit={handleSubmit} className={styles.container}>
-        <h2>Cadastro de insumos ⚒️</h2>
-        {mensagemSucesso && <span style={{color: 'green'}}>Cadastrado com sucesso!</span>}
-        <div className={styles.linha}>
-            <div className={styles.group}>
-                <label htmlFor="descricao">Descrição</label>
-                <input 
-                    id='descricao'
-                    type="text" 
-                    className={styles.iDescricao}
-                    name="ism_descricao"
-                    value={formData.ism_descricao}
-                    onChange={handleChange}
-                />  
-            </div>
-        </div>
-        <div className={styles.linha}>
-            <div className={styles.group}>
-                <label htmlFor="preco">Preço</label>
-               <NumericFormat
-                    id='preco'
-                    className={styles.outros} // Mantém sua classe de estilo
-                    name="ism_preco"
-                    value={formData.ism_preco}
-                    
-                    // Configurações da Máscara Brasileira
-                    thousandSeparator="."
-                    decimalSeparator=","
-                    prefix="R$ "
-                    decimalScale={2}
-                    fixedDecimalScale
-                    allowNegative={false}
+    return (
+        <form onSubmit={handleSubmit} className={styles.container} onClick={() => setShowSuggestions(false)}>
+            {mensagemSucesso && <span style={{color: 'green', display: 'block'}}>Salvo com sucesso!</span>}
 
-                    // Como atualizar o estado
-                    onValueChange={(values) => {
-                        const { value } = values; // 'value' é a string do número puro (ex: "10.50")
-                        setFormData({
-                            ...formData,
-                            ism_preco: value // Salva o número puro no estado para o banco de dados
-                        });
-                    }}
-                />
+            <div className={styles.linha}>
+                <div style={{ position: 'relative', width: '100%' }}>
+                    <label htmlFor="descricao">Descrição</label>
+                    <input 
+                        id='descricao'
+                        type="text" 
+                        autoComplete="off"
+                        className={styles.iDescricao}
+                        name="ism_descricao"
+                        value={formData.ism_descricao}
+                        onChange={handleChange}
+                        onFocus={() => setShowSuggestions(true)}
+                        onClick={(e) => e.stopPropagation()}
+                    />  
+
+                    {showSuggestions && formData.ism_descricao.length >= 3 && (
+                        <ul className={styles.suggestionList} onClick={(e) => e.stopPropagation()}>
+                            {isLoadingRM && <li className={styles.itemInfo}>Buscando no RM...</li>}
+                            
+                            {sugestoesRM?.map((item, index) => (
+                                <li 
+                                    key={`${item.code}-${index}`} 
+                                    className={styles.itemSuggestion}
+                                    onClick={() => handleSelectRM(item)}
+                                >
+                                    <strong>{item.description}</strong>
+                                    <small>Cód: {item.code} | Un: {item.unitMeasure}</small>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                </div>
             </div>
-            <div className={styles.group}>
-                <label htmlFor="unidade">Unidade</label>
-                <select 
-                    id='unidade'
-                    className={styles.outros} 
-                    name="und_id"
-                    value={formData.und_id}
-                    onChange={handleChange}
+
+            <div className={styles.linha}>
+                <div className={styles.group}>
+                    <label htmlFor="preco">Preço</label>
+                    <NumericFormat
+                        id='preco'
+                        className={styles.outros}
+                        value={formData.ism_preco}
+                        thousandSeparator="."
+                        decimalSeparator=","
+                        prefix="R$ "
+                        decimalScale={2}
+                        fixedDecimalScale
+                        onValueChange={(v) => setFormData({...formData, ism_preco: v.value})}
+                    />
+                </div>
+                <div className={styles.group}>
+                    <label htmlFor="unidade">Unidade</label>
+                    <select 
+                        id='unidade'
+                        className={styles.outros} 
+                        name="und_id"
+                        value={formData.und_id}
+                        onChange={handleChange}
                     >
-                    {
-                    <option value="" disabled hidden>
-                        Escolha uma unidade...
-                    </option>
-                    }
-                    {unidades.map((unidade) => (
-                    <option key={unidade.und_id} value={unidade.und_id}>
-                    {unidade.und_codigo} - {unidade.und_descricao?.toLowerCase()}
-                    </option>
-                    ))}
-                </select>
+                        <option value="">Escolha...</option>
+                        {unidades.map((u) => (
+                            <option key={u.und_id} value={u.und_id}>
+                                {u.und_codigo} - {u.und_descricao?.toLowerCase()}
+                            </option>
+                        ))}
+                    </select>
+                </div>
             </div>
-        </div>
-        <div className={styles.linha}>
-            <div className={styles.group}>
-                <label htmlFor="grupocusto">Grupo de custo</label>
-                <input id='grupocusto' type="text"  className={styles.outros}/>
-            </div>
-        </div>
-        <div className={styles.groupBtn}>
-                <button type='submit'>{isSaving ? 'Salvando...' : 'Salvar'}</button>
-                <button type='button' onClick={onClose} disabled={isSaving}>Fechar</button>
-        </div>
-    </form>
-  )
-}
 
-export default ModalInsumo
+            <div className={styles.groupBtn}>
+                <button type='submit' disabled={isSaving}>{isSaving ? 'Salvando...' : 'Salvar'}</button>
+                <button type='button' onClick={onClose}>Fechar</button>
+            </div>
+        </form>
+    );
+};
+
+export default ModalInsumo;

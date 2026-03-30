@@ -2,7 +2,7 @@ import { DataTypes } from "sequelize";
 import sequelize from "../database/conn.js";
 
 import GrupoCusto from "./GrupoCusto.js";
-import Unidade from "./Unidade.js";
+
 
 const Insumo = sequelize.define('insumo', {
     ism_id: {
